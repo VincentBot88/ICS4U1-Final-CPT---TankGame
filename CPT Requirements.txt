@@ -1,0 +1,21 @@
+Window size (actually panel size) should be exactly 1280x720 pixels
+All programs must have a chat area
+All programs must have one or more data files that contain the data for the objects of the game.   The data files can be in csv or txt format depending on the type and/or quantity of objects
+All programs must have a network component.  As a result, all programs must have a network “language” that distinguishes between chat messages, game messages, movement, attack, etc.
+All programs must use an animated panel (JGraphics) in their program
+All programs must also use multiple JComponents (Buttons, Text Fields, etc)
+One window only.   You can swap out the panels if you need, but ensure that there is one main game frame.
+All programs should try to follow the Model View Controller paradigm of programming as best as possible.   The program should therefore should have:
+A “Model” java class where the main data of the game is stored
+A “View” java class where the user interface (buttons, frames, panels) are defined
+A “Controller” that connects the Model and View together
+In your programs, you will most likely have a model, but a combined view/controller
+All images need to be original.   These programs might be published on a public website so let’s avoid copyright issues.
+
+4 players maximum including server player
+3 different maps (CSV file) 
+WASD movement, mouse for aim
+Server set number of kills in the lobby when client is joining
+Power Ups are optional
+All movement, animations, variables and damage are the same.
+
