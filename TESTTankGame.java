@@ -5,7 +5,7 @@ import javax.swing.event.*;
 
 public class TESTTankGame implements ActionListener, KeyListener, MouseMotionListener{
 	//Properties
-	JFrame theFrame = new JFrame("Tanks");
+	JFrame theFrame = new JFrame("Top Down Tanks");
 	TESTTankPanel thePanel = new TESTTankPanel();
 	Timer theTimer = new Timer(1000/60, this);
 	public JLabel resultLabel;
