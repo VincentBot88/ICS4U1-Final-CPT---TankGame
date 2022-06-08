@@ -31,7 +31,8 @@ public class TESTTankPanel extends JPanel{
 		g.fillRect(0, 0, 1280, 720);
 		//P1
 		g.setColor(Color.BLACK);
-		g.fillRect(intP1X, intP1Y, 30, 30);
+		//g.fillRect(intP1X, intP1Y, 30, 30);
+		g.drawImage(P1img, intP1X, intP1Y, null);
 		// movement
 		intP1Y = intP1Y + intP1DefY;
 		intP1X = intP1X + intP1DefX;
