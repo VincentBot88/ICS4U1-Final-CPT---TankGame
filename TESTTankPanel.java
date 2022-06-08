@@ -2,6 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.io.*;
+import java.awt.image.*;
+import javax.imageio.*;
 
 public class TESTTankPanel extends JPanel{
 	//Properties
@@ -15,6 +18,10 @@ public class TESTTankPanel extends JPanel{
 	double bulletY = intP1Y;
 	boolean fire = false;
 	double bulletVelocity = 0; //however fast you want your bullet to travel
+	BufferedImage P1img = null;
+	BufferedImage P2img = null;
+	BufferedImage P3img = null; 
+	BufferedImage P4img = null;
 	
 	//Methods
 	public void paintComponent(Graphics g){
@@ -49,6 +56,14 @@ public class TESTTankPanel extends JPanel{
 	//Constructor
 	public TESTTankPanel(){
 		super();
+		try{
+			P1img = ImageIO.read(this.getClass().getResourceAsStream("P1.png"));
+			P2img = ImageIO.read(this.getClass().getResourceAsStream("P2.png"));
+			P3img = ImageIO.read(this.getClass().getResourceAsStream("P3.png"));
+			P4img = ImageIO.read(this.getClass().getResourceAsStream("P4.png"));
+		}catch (IOException e){
+			System.out.println("Cant load images");
+		}
 	}
 
 
