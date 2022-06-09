@@ -17,17 +17,7 @@ import java.util.Vector;
 import java.util.Enumeration;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * <h1>SuperSocketMaster</h1>
- * This class gives Java students the ability to quickly open a Java network socket<p>
- * They can then send outgoing text over the socket<p>
- * They can recieve incoming text over the socket<p>
- * Incoming text triggers an ActionEvent<p>
- * This class is meant to be used in Java Swing/AWT programs
- * @author  Alfred Cadawas
- * @version 2.0
- * @since   2016-04-21 
- */
+
 public class SuperSocketMasterTank{
   // Properties
   private int intPort = 1337;
@@ -149,7 +139,7 @@ public class SuperSocketMasterTank{
    * @param intPort TCP Port you want to use for your connection
    * @param listener Swing/AWT program's ActionListener.  Usually "this"
    */
-  public SuperSocketMaster(int intPort, ActionListener listener){
+  public SuperSocketMasterTank(int intPort, ActionListener listener){
     this.addActionListener(listener);
     this.intPort = intPort;
   }
@@ -160,7 +150,7 @@ public class SuperSocketMasterTank{
    * @param intPort TCP Port you want to use for your connection
    * @param listener Swing/AWT program's ActionListener.  Usually "this"
    */
-  public SuperSocketMaster(String strServerIP, int intPort, ActionListener listener){
+  public SuperSocketMasterTank(String strServerIP, int intPort, ActionListener listener){
     this.addActionListener(listener);
     this.intPort = intPort;
     this.strServerIP = strServerIP;
@@ -176,7 +166,7 @@ public class SuperSocketMasterTank{
     * *****************************************************************/
   
   private class SocketConnection implements Runnable, ActionListener{
-    SuperSocketMaster parentssm = null;
+    SuperSocketMasterTank parentssm = null;
     int intPort = 1337;
     String strServerIP = null;
     String strIncomingText = "";
@@ -439,7 +429,7 @@ public class SuperSocketMasterTank{
         return true;
       }
     }
-    public ClientConnection(SuperSocketMaster parentssm, Socket socketObject, SocketConnection socketConnection){
+    public ClientConnection(SuperSocketMasterTank parentssm, Socket socketObject, SocketConnection socketConnection){
       this.socketConnection = socketConnection;
       this.socketObject = socketObject;
       this.parentssm = parentssm;  
