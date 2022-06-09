@@ -47,7 +47,12 @@ public class TESTTankPanel extends JPanel{
 		g.fillRect((int)bulletY, (int)bulletX, 10, 10);
 		bulletX = bulletX + xVelocity;
 		bulletY = bulletY + yVelocity;
-		if(bulletX > 1280 || bulletY > 720){
+		if(bulletVelocity == 0){
+			bulletX = intP1Y;
+			bulletY = intP1X;
+		}
+		if(bulletX > 720 || bulletY > 1280){
+			System.out.println(bulletX);
 			bulletVelocity = 0;
 			bulletX = intP1Y;
 			bulletY = intP1X;
