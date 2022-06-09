@@ -373,7 +373,7 @@ public class SuperSocketMasterTank{
         return true;
       }
     }
-    public SocketConnection(String strServerIP, int intPort, SuperSocketMaster parentssm){
+    public SocketConnection(String strServerIP, int intPort, SuperSocketMasterTank parentssm){
       this.strServerIP = strServerIP;
       this.intPort = intPort;
       this.parentssm = parentssm;
@@ -386,7 +386,7 @@ public class SuperSocketMasterTank{
     }
   }
   private class ClientConnection implements Runnable{
-    SuperSocketMaster parentssm = null;
+    SuperSocketMasterTank parentssm = null;
     SocketConnection socketConnection = null;
     String strIncomingText = "";
     Socket socketObject = null;
