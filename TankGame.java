@@ -7,10 +7,10 @@ import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
 
-public class TESTTankGame implements ActionListener, KeyListener, MouseMotionListener{
+public class TankGame implements ActionListener, KeyListener, MouseMotionListener{
 	//Properties
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
-	TESTTankPanel thePanel = new TESTTankPanel();
+	MenuPanel thePanel = new MenuPanel();
 	Timer theTimer = new Timer(1000/60, this);
 	public JLabel resultLabel;
 	JButton QuitGameButton = new JButton();
@@ -118,6 +118,9 @@ public class TESTTankGame implements ActionListener, KeyListener, MouseMotionLis
 			//When a player joins, print something just above the lines saying "Players: P1, P2 ...."
 		}
 		if(evt.getSource() == StartButton){
+			thePanel.removeAll();
+			thePanel.repaint();
+			 
 			//Clears screen then start the gameplay
 		}
 	}
@@ -156,7 +159,7 @@ public class TESTTankGame implements ActionListener, KeyListener, MouseMotionLis
 	}
 	
 	//Constructor
-	public TESTTankGame(){
+	public TankGame(){
 		//Window Elements Essentials
 		thePanel.setPreferredSize(new Dimension(1280, 720));
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -252,7 +255,7 @@ public class TESTTankGame implements ActionListener, KeyListener, MouseMotionLis
 
 	//main method
 	public static void main(String[] args){
-		new TESTTankGame();
+		new TankGame();
 	}
 
 }

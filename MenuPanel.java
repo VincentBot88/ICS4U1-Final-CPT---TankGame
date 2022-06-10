@@ -6,7 +6,7 @@ import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
 
-public class TESTTankPanel extends JPanel{
+public class MenuPanel extends JPanel{
 	//Properties
 	int intP1Y = 100;
 	int intP1X = 100;
@@ -17,7 +17,7 @@ public class TESTTankPanel extends JPanel{
 	double bulletX = intP1X;
 	double bulletY = intP1Y;
 	boolean fire = false;
-	double bulletVelocity = 0; //however fast you want your bullet to travel
+	double bulletVelocity = 0; //However fast you want your bullet to travel
 	BufferedImage P1img = null;
 	BufferedImage P2img = null;
 	BufferedImage P3img = null; 
@@ -26,19 +26,25 @@ public class TESTTankPanel extends JPanel{
 	Color menuDecoration = new Color(31, 79, 21);
 	Color menuDecoration2 = new Color(104, 1, 1);
 	
+	
+		
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		
 		//Background
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 1280, 720);
+		
 		//P1
 		//g.drawImage(P1img, intP1X, intP1Y, null);**********************************************************************************************Uncomment it later on when u code the mechanics, vincent
 		// movement
 		intP1Y = intP1Y + intP1DefY;
 		intP1X = intP1X + intP1DefX;
+		
 		//Title card
 		g.drawImage(Titleimg, 100, 10, null);
+		
 		//Main Menu Decoration
 		g.setColor(menuDecoration);
 		g.fillRect(400, 0, 40, 720);
@@ -57,9 +63,10 @@ public class TESTTankPanel extends JPanel{
 		g.fillRect(560, 600, 720, 40);
 		g.setColor(menuDecoration2);
 		g.fillRect(560, 660, 720, 40);
+	
 		
 		
-		//bullet
+		//Bullet
 		
         //mouseX/Y = current x/y location of the mouse
         //originX/Y = x/y location of where the bullet is being shot from
@@ -83,7 +90,7 @@ public class TESTTankPanel extends JPanel{
 	}
 	
 	//Constructor
-	public TESTTankPanel(){
+	public MenuPanel(){
 		super();
 		try{
 			P1img = ImageIO.read(this.getClass().getResourceAsStream("tank_blue.png"));
