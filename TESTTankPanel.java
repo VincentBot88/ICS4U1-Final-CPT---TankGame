@@ -19,23 +19,45 @@ public class TESTTankPanel extends JPanel{
 	boolean fire = false;
 	double bulletVelocity = 0; //however fast you want your bullet to travel
 	BufferedImage P1img = null;
-	//BufferedImage P2img = null;
-	//BufferedImage P3img = null; 
-	//BufferedImage P4img = null;
+	BufferedImage P2img = null;
+	BufferedImage P3img = null; 
+	BufferedImage P4img = null;
+	BufferedImage Titleimg = null;
+	Color menuDecoration = new Color(31, 79, 21);
+	Color menuDecoration2 = new Color(104, 1, 1);
 	
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		//Background
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 1280, 720);
 		//P1
-		g.setColor(Color.BLACK);
-		//g.fillRect(intP1X, intP1Y, 30, 30);
-		g.drawImage(P1img, intP1X, intP1Y, null);
+		//g.drawImage(P1img, intP1X, intP1Y, null);**********************************************************************************************Uncomment it later on when u code the mechanics, vincent
 		// movement
 		intP1Y = intP1Y + intP1DefY;
 		intP1X = intP1X + intP1DefX;
+		//Title card
+		g.drawImage(Titleimg, 100, 10, null);
+		//Main Menu Decoration
+		g.setColor(menuDecoration);
+		g.fillRect(400, 0, 40, 720);
+		g.setColor(Color.WHITE);
+		g.fillRect(460, 0, 40, 720);
+		g.setColor(menuDecoration);
+		g.fillRect(520, 0, 40, 720);
+		g.setColor(menuDecoration2);
+		g.fillRect(0, 540, 400, 40);
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 600, 400, 40);
+		g.setColor(menuDecoration2);
+		g.fillRect(0, 660, 400, 40);
+		g.fillRect(560, 540, 720, 40);
+		g.setColor(Color.WHITE);
+		g.fillRect(560, 600, 720, 40);
+		g.setColor(menuDecoration2);
+		g.fillRect(560, 660, 720, 40);
+		
 		
 		//bullet
 		
@@ -44,7 +66,8 @@ public class TESTTankPanel extends JPanel{
         double angle =(Math.atan2(mouseX - intP1X, mouseY - intP1Y));
         double xVelocity = ((bulletVelocity) * Math.cos(angle));
         double yVelocity = ((bulletVelocity) * Math.sin(angle));
-		g.fillRect((int)bulletY, (int)bulletX, 10, 10);
+        g.setColor(Color.WHITE);
+		//g.fillRect((int)bulletY, (int)bulletX, 10, 10);**********************************************************************************************Uncomment it later on when u code the mechanics, vincent
 		bulletX = bulletX + xVelocity;
 		bulletY = bulletY + yVelocity;
 		if(bulletVelocity == 0){
@@ -64,9 +87,10 @@ public class TESTTankPanel extends JPanel{
 		super();
 		try{
 			P1img = ImageIO.read(this.getClass().getResourceAsStream("tank_blue.png"));
-			//P2img = ImageIO.read(this.getClass().getResourceAsStream("P2.png"));
-			//P3img = ImageIO.read(this.getClass().getResourceAsStream("P3.png"));
-			//P4img = ImageIO.read(this.getClass().getResourceAsStream("P4.png"));
+			P2img = ImageIO.read(this.getClass().getResourceAsStream("tank_red.png"));
+			P3img = ImageIO.read(this.getClass().getResourceAsStream("tank_green.png"));
+			P4img = ImageIO.read(this.getClass().getResourceAsStream("tank_orange.png"));
+			Titleimg = ImageIO.read(this.getClass().getResourceAsStream("title.png"));
 		}catch (IOException e){
 			System.out.println("Cant load images");
 		}
