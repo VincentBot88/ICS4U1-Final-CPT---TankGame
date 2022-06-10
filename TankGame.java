@@ -124,7 +124,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.removeAll();
 			theFrame.setContentPane(theGamePanel);
 			theFrame.pack();
-					
+			theFrame.requestFocus();	
 		}
 	}
 	
