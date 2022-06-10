@@ -11,6 +11,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	//Properties
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
 	MenuPanel thePanel = new MenuPanel();
+	GamePanel theGamePanel = new GamePanel();
 	Timer theTimer = new Timer(1000/60, this);
 	public JLabel resultLabel;
 	JButton QuitGameButton = new JButton();
@@ -33,8 +34,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	
 	//Methods
 	public void mouseMoved(MouseEvent evt){
-		thePanel.mouseX = evt.getX();
-		thePanel.mouseY = evt.getY();
+		theGamePanel.mouseX = evt.getX();
+		theGamePanel.mouseY = evt.getY();
 	}
 	public void mouseDragged(MouseEvent evt){
 		
@@ -118,22 +119,24 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			//When a player joins, print something just above the lines saying "Players: P1, P2 ...."
 		}
 		if(evt.getSource() == StartButton){
-			thePanel.removeAll();
-			thePanel.repaint();
-			 
 			//Clears screen then start the gameplay
+			thePanel.removeAll();
+			theFrame.setContentPane(theGamePanel);
+			thePanel.setLayout(null);
+			theFrame.pack();
+			
 		}
 	}
 	
 	public void keyReleased(KeyEvent evt){
 		if(evt.getKeyChar() == 'w'){
-			thePanel.intP1DefY = 0;
+			theGamePanel.intP1DefY = 0;
 		}else if(evt.getKeyChar() == 's'){
-			thePanel.intP1DefY = 0;
+			theGamePanel.intP1DefY = 0;
 		}else if(evt.getKeyChar() == 'a'){
-			thePanel.intP1DefX = 0;
+			theGamePanel.intP1DefX = 0;
 		}else if(evt.getKeyChar() == 'd'){
-			thePanel.intP1DefX = 0;
+			theGamePanel.intP1DefX = 0;
 		}
 		if(evt.getKeyCode() == 32){
 			
@@ -141,17 +144,17 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyChar() == 'w'){
-			thePanel.intP1DefY = -2;
+			theGamePanel.intP1DefY = -2;
 		}else if(evt.getKeyChar() == 's'){
-			thePanel.intP1DefY = +2;
+			theGamePanel.intP1DefY = +2;
 		}else if(evt.getKeyChar() == 'a'){
-			thePanel.intP1DefX = -2;
+			theGamePanel.intP1DefX = -2;
 		}else if(evt.getKeyChar() == 'd'){
-			thePanel.intP1DefX = +2;
+			theGamePanel.intP1DefX = +2;
 		}
 		
 		if(evt.getKeyCode() == 16){
-			thePanel.bulletVelocity = 4;
+			theGamePanel.bulletVelocity = 4;
 		}
 	}
 	public void keyTyped(KeyEvent evt){
@@ -162,9 +165,12 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public TankGame(){
 		//Window Elements Essentials
 		thePanel.setPreferredSize(new Dimension(1280, 720));
+		theGamePanel.setPreferredSize(new Dimension(1280, 720));
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		thePanel.addMouseMotionListener(this);
+		theGamePanel.addMouseMotionListener(this);
 		theFrame.addKeyListener(this);
+		theGamePanel.addKeyListener(this);
 		thePanel.setLayout(null);
 		theFrame.setContentPane(thePanel);
 		theFrame.pack();
@@ -202,7 +208,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		StartButton.setSize(100, 50);
 		StartButton.setLocation(1100, 400);
 		StartButton.addActionListener(this);
-		
 		
 		//Join Button
 		JoinButton = new JButton("Join");
@@ -249,8 +254,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		PortLabel = new JLabel("Port: ");
 		PortLabel.setSize(400, 50);
 		PortLabel.setLocation(750, 250);
-		
-		
+
 	}
 
 	//main method
