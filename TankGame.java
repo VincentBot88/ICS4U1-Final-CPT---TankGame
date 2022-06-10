@@ -45,6 +45,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
+			theGamePanel.repaint();
 		}
 		if(evt.getSource() == QuitGameButton){
 			System.exit(0);
@@ -122,9 +123,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			//Clears screen then start the gameplay
 			thePanel.removeAll();
 			theFrame.setContentPane(theGamePanel);
-			thePanel.setLayout(null);
 			theFrame.pack();
-			
+					
 		}
 	}
 	
