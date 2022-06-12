@@ -6,8 +6,9 @@ import javax.swing.event.*;
 import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
+import java.util.ArrayList;
 
-public class TankGame implements ActionListener, KeyListener, MouseMotionListener{
+public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener{
 	//Properties
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
 	MenuPanel thePanel = new MenuPanel();
@@ -34,13 +35,26 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	
 	//Methods
 	public void mouseMoved(MouseEvent evt){
-		theGamePanel.mouseX = evt.getX();
-		theGamePanel.mouseY = evt.getY();
+
 	}
-	public void mouseDragged(MouseEvent evt){
-		
+	public void mousePressed(MouseEvent evt) {
+		if(evt.getButton()==3 && theGamePanel.bulletVelocity == 0){
+			theGamePanel.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+			theGamePanel.bulletVelocity = 10;
+		}
 	}
 	
+	public void mouseReleased(MouseEvent evt){
+	}
+	public void mouseDragged(MouseEvent evt){
+	}
+	public void mouseClicked(MouseEvent evt){	
+	}
+	public void mouseEntered(MouseEvent evt){
+	}
+	public void mouseExited(MouseEvent evt){
+	}
 	
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
@@ -153,8 +167,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.intP1DefX = +2;
 		}
 		
-		if(evt.getKeyCode() == 16){
-			theGamePanel.bulletVelocity = 4;
+		if(evt.getKeyCode() == 32){
+			
 		}
 	}
 	public void keyTyped(KeyEvent evt){
@@ -169,6 +183,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		thePanel.addMouseMotionListener(this);
 		theGamePanel.addMouseMotionListener(this);
+		theGamePanel.addMouseListener(this);
 		theFrame.addKeyListener(this);
 		theGamePanel.addKeyListener(this);
 		thePanel.setLayout(null);

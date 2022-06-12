@@ -5,6 +5,7 @@ import javax.swing.event.*;
 import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel{
 	//Properties
@@ -22,13 +23,38 @@ public class GamePanel extends JPanel{
 	BufferedImage P2img = null;
 	BufferedImage P3img = null; 
 	BufferedImage P4img = null;
+	BufferedImage ground = null;
+	BufferedImage wall = null;
+
 
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
+		String strData[][];
+		strData = new String [30][30];
+		
+		String strLine;
+		String strRow[];
+		
+		int row;
+		int col;
+		for(row = 0; row < 30; row++){
+			strLine = thedatafile.readLine();
+			strRow = strLine.split(","); //Split based on commas
+			//draws map
+			for(col = 0; col < 30; col++){
+				strData[row][col] = strRow[col];
+				if(strData[row][col].equals("g")){
+					con.drawImage(imgGrass, col * 30, row * 30);
+				}else if(strData[row][col].equals("w")){
+					con.drawImage(imgWater, col * 30, row * 30);
+				}
+			}
+		}
+		
 		//Background
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 1280, 720);
 		
 		//P1
@@ -45,7 +71,7 @@ public class GamePanel extends JPanel{
         double angle =(Math.atan2(mouseX - intP1X, mouseY - intP1Y));
         double xVelocity = ((bulletVelocity) * Math.cos(angle));
         double yVelocity = ((bulletVelocity) * Math.sin(angle));
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK);
 		g.fillRect((int)bulletY, (int)bulletX, 10, 10);
 		bulletX = bulletX + xVelocity;
 		bulletY = bulletY + yVelocity;
@@ -53,6 +79,7 @@ public class GamePanel extends JPanel{
 			bulletX = intP1Y;
 			bulletY = intP1X;
 		}
+
 		if(bulletX > 720 || bulletY > 1280){
 			System.out.println(bulletX);
 			bulletVelocity = 0;
@@ -69,6 +96,8 @@ public class GamePanel extends JPanel{
 			P2img = ImageIO.read(this.getClass().getResourceAsStream("tank_red.png"));
 			P3img = ImageIO.read(this.getClass().getResourceAsStream("tank_green.png"));
 			P4img = ImageIO.read(this.getClass().getResourceAsStream("tank_orange.png"));
+			wall = ImageIO.read(this.getClass().getResourceAsStream("building.jpg"));
+			ground = ImageIO.read(this.getClass().getResourceAsStream("grass.jpg"));
 		}catch (IOException e){
 			System.out.println("Cant load images");
 		}
