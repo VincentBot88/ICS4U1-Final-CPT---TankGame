@@ -39,7 +39,7 @@ public class GamePanel extends JPanel{
 		
 		int row;
 		int col;
-		for(row = 0; row < 30; row++){
+		/*for(row = 0; row < 30; row++){
 			strLine = thedatafile.readLine();
 			strRow = strLine.split(","); //Split based on commas
 			//draws map
@@ -51,7 +51,7 @@ public class GamePanel extends JPanel{
 					con.drawImage(imgWater, col * 30, row * 30);
 				}
 			}
-		}
+		}*/
 		
 		//Background
 		g.setColor(Color.WHITE);

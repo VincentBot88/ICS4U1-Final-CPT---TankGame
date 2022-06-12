@@ -38,7 +38,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 
 	}
 	public void mousePressed(MouseEvent evt) {
-		if(evt.getButton()==3 && theGamePanel.bulletVelocity == 0){
+		if(evt.getButton()==1 && theGamePanel.bulletVelocity == 0){
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
 			theGamePanel.bulletVelocity = 10;
