@@ -25,37 +25,51 @@ public class GamePanel extends JPanel{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
+	
 
 
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		BufferedReader map = null;
+		try{
+			map = new BufferedReader(new FileReader("map.csv"));
+		}catch(FileNotFoundException e){
+			System.out.println("File not found!");
+		}
 		
 		String strData[][];
-		strData = new String [30][30];
+		strData = new String [18][32];
 		
-		String strLine;
+		String strLine = "";
 		String strRow[];
 		
 		int row;
 		int col;
-		/*for(row = 0; row < 30; row++){
-			strLine = thedatafile.readLine();
+		for(row = 0; row < 18; row++){
+			try{
+				strLine = map.readLine();
+			}catch(IOException e){
+				System.out.println("Error reading from file");
+			}
 			strRow = strLine.split(","); //Split based on commas
 			//draws map
-			for(col = 0; col < 30; col++){
+			for(col = 0; col < 32; col++){
 				strData[row][col] = strRow[col];
 				if(strData[row][col].equals("g")){
-					con.drawImage(imgGrass, col * 30, row * 30);
+					g.drawImage(ground, col * 40, row * 40, null);
 				}else if(strData[row][col].equals("w")){
-					con.drawImage(imgWater, col * 30, row * 30);
+					g.drawImage(wall, col * 40, row * 40, null);
 				}
 			}
-		}*/
+		}
+		try{
+			map.close();
+		}catch(IOException e){
+			System.out.println("Unable to close file");
+		}
 		
-		//Background
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 1280, 720);
+		
 		
 		//P1
 		g.drawImage(P1img, intP1X, intP1Y, null);
