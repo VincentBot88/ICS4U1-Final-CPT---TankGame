@@ -7,9 +7,11 @@ import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
 import java.util.ArrayList;
+import java.net.*;
 
 public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener{
 	//Properties
+	SuperSocketMasterTank ssm;
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
 	MenuPanel thePanel = new MenuPanel();
 	GamePanel theGamePanel = new GamePanel();
@@ -82,6 +84,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(JoinButton);
 		}
 		if(evt.getSource() == HostGameButton){
+			ssm = new SuperSocketMasterTank(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
+			boolean tankConnect = ssm.connect();
 			thePanel.remove(JoinGameButton);
 			thePanel.remove(HostGameButton);
 			HostLabel.setForeground(Color.RED);
