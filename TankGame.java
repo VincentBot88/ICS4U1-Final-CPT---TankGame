@@ -84,8 +84,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(JoinButton);
 		}
 		if(evt.getSource() == HostGameButton){
-			ssm = new SuperSocketMasterTank(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
-			boolean tankConnect = ssm.connect();
 			thePanel.remove(JoinGameButton);
 			thePanel.remove(HostGameButton);
 			HostLabel.setForeground(Color.RED);
@@ -136,6 +134,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		if(evt.getSource() == HostButton){
 			//Opens server and allows players to join
 			//When a player joins, print something just above the lines saying "Players: P1, P2 ...."
+			ssm = new SuperSocketMasterTank(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
+			boolean tankConnect = ssm.connect();
 		}
 		if(evt.getSource() == StartButton){
 			//Clears screen then start the gameplay
