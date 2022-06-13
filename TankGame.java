@@ -26,8 +26,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JButton StartButton = new JButton();
 	JButton JoinButton = new JButton();
 	
-	JTextField IPTextField = new JTextField();
-	JTextField PortTextField = new JTextField();
+	JTextField IPTextField = new JTextField("localhost");
+	JTextField PortTextField = new JTextField("6112");
 	
 	JLabel IPLabel = new JLabel();
 	JLabel PortLabel = new JLabel();
@@ -144,6 +144,12 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			PortTextField.setEnabled(false);
 			ssm = new SuperSocketMasterTank(Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
+			if(tankConnect){
+				thePanel.removeAll();
+				theFrame.setContentPane(theGamePanel);
+				theFrame.pack();
+				theFrame.requestFocus();
+			}
 		}
 		if(evt.getSource() == StartButton){
 			//Clears screen then start the gameplay
@@ -281,6 +287,15 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		PortLabel = new JLabel("Port: ");
 		PortLabel.setSize(400, 50);
 		PortLabel.setLocation(750, 250);
+		
+		theFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				if(ssm != null){
+					ssm.disconnect();
+				}
+			}
+		});
 
 	}
 
