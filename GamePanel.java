@@ -95,7 +95,7 @@ public class GamePanel extends JPanel{
 		}
 
 		if(bulletX > 720 || bulletY > 1280 || bulletX < 0 || bulletY < 0){
-			System.out.println(bulletX);
+			//System.out.println(bulletX);
 			bulletVelocity = 0;
 			bulletX = intP1Y;
 			bulletY = intP1X;
