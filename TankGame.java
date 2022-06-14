@@ -33,6 +33,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JLabel PortLabel = new JLabel();
 	JLabel JoinLabel = new JLabel();
 	JLabel HostLabel = new JLabel();
+	static int intJoin = 0;
 	
 	
 	//Methods
@@ -140,7 +141,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theFrame.pack();
 				theFrame.requestFocus();
 			}
-			
 		}
 		if(evt.getSource() == HostButton){
 			//Opens server and allows players to join
@@ -161,32 +161,36 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 	
 	public void keyReleased(KeyEvent evt){
-		if(evt.getKeyChar() == 'w'){
-			theGamePanel.intP1DefY = 0;
-		}else if(evt.getKeyChar() == 's'){
-			theGamePanel.intP1DefY = 0;
-		}else if(evt.getKeyChar() == 'a'){
-			theGamePanel.intP1DefX = 0;
-		}else if(evt.getKeyChar() == 'd'){
-			theGamePanel.intP1DefX = 0;
-		}
-		if(evt.getKeyCode() == 32){
-			
+		if(evt.getSource() == ssm){
+			if(evt.getKeyChar() == 'w'){
+				theGamePanel.intP1DefY = 0;
+			}else if(evt.getKeyChar() == 's'){
+				theGamePanel.intP1DefY = 0;
+			}else if(evt.getKeyChar() == 'a'){
+				theGamePanel.intP1DefX = 0;
+			}else if(evt.getKeyChar() == 'd'){
+				theGamePanel.intP1DefX = 0;
+			}
+			if(evt.getKeyCode() == 32){
+				
+			}
 		}
 	}
 	public void keyPressed(KeyEvent evt){
-		if(evt.getKeyChar() == 'w'){
-			theGamePanel.intP1DefY = -2;
-		}else if(evt.getKeyChar() == 's'){
-			theGamePanel.intP1DefY = +2;
-		}else if(evt.getKeyChar() == 'a'){
-			theGamePanel.intP1DefX = -2;
-		}else if(evt.getKeyChar() == 'd'){
-			theGamePanel.intP1DefX = +2;
-		}
-		
-		if(evt.getKeyCode() == 32){
+		if(evt.getSource() == ssm){
+			if(evt.getKeyChar() == 'w'){
+				theGamePanel.intP1DefY = -2;
+			}else if(evt.getKeyChar() == 's'){
+				theGamePanel.intP1DefY = +2;
+			}else if(evt.getKeyChar() == 'a'){
+				theGamePanel.intP1DefX = -2;
+			}else if(evt.getKeyChar() == 'd'){
+				theGamePanel.intP1DefX = +2;
+			}
 			
+			if(evt.getKeyCode() == 32){
+				
+			}
 		}
 	}
 	public void keyTyped(KeyEvent evt){
@@ -287,6 +291,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		PortLabel = new JLabel("Port: ");
 		PortLabel.setSize(400, 50);
 		PortLabel.setLocation(750, 250);
+		
+		ssm = new SuperSocketMasterTank(6112, this);
+		ssm.connect();
 		
 		theFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override

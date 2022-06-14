@@ -25,6 +25,7 @@ public class GamePanel extends JPanel{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
+	SuperSocketMasterTank ssm;
 	
 
 
@@ -37,13 +38,13 @@ public class GamePanel extends JPanel{
 		}catch(FileNotFoundException e){
 			System.out.println("File not found!");
 		}
-		
+			
 		String strData[][];
 		strData = new String [18][32];
-		
+			
 		String strLine = "";
 		String strRow[];
-		
+			
 		int row;
 		int col;
 		for(row = 0; row < 18; row++){
@@ -68,24 +69,24 @@ public class GamePanel extends JPanel{
 		}catch(IOException e){
 			System.out.println("Unable to close file");
 		}
-		
-		
-		
+			
+			
+			
 		//P1
 		g.drawImage(P1img, intP1X, intP1Y, null);
 		// movement
 		intP1Y = intP1Y + intP1DefY;
 		intP1X = intP1X + intP1DefX;
-		
-		
+			
+			
 		//Bullet
-		
-        //mouseX/Y = current x/y location of the mouse
-        //originX/Y = x/y location of where the bullet is being shot from
-        double angle =(Math.atan2(mouseX - intP1X, mouseY - intP1Y));
-        double xVelocity = ((bulletVelocity) * Math.cos(angle));
-        double yVelocity = ((bulletVelocity) * Math.sin(angle));
-        g.setColor(Color.BLACK);
+			
+		//mouseX/Y = current x/y location of the mouse
+		//originX/Y = x/y location of where the bullet is being shot from
+		double angle =(Math.atan2(mouseX - intP1X, mouseY - intP1Y));
+		double xVelocity = ((bulletVelocity) * Math.cos(angle));
+		double yVelocity = ((bulletVelocity) * Math.sin(angle));
+		g.setColor(Color.BLACK);
 		g.fillRect((int)bulletY, (int)bulletX, 10, 10);
 		bulletX = bulletX + xVelocity;
 		bulletY = bulletY + yVelocity;
