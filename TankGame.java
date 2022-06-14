@@ -167,6 +167,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theFrame.setContentPane(theGamePanel);
 				theFrame.pack();
 				theFrame.requestFocus();
+				theGamePanel.add(theScrollBar);
+				theGamePanel.add(SendButton);
+				theGamePanel.add(chatToSend);
 			}
 		}
 		if(evt.getSource() == StartButton){
@@ -222,13 +225,13 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			}
 			
 			System.out.println("sending message over network"+ssm);
-			ssm.sendText("p1tank,");
+			ssm.sendText("P1: ");
 			if(evt.getKeyCode() == 32){
 				
 			}
 	}
 	public void keyTyped(KeyEvent evt){
-		ssm.sendText("ASDFASDFASDFAF!!!!!!!!");
+		ssm.sendText("Moving");
 		
 	}
 	
