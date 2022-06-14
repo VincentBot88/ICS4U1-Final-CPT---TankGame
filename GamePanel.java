@@ -135,8 +135,8 @@ public class GamePanel extends JPanel implements ActionListener{
 			P4img = ImageIO.read(this.getClass().getResourceAsStream("tank_orange.png"));
 			wall = ImageIO.read(this.getClass().getResourceAsStream("building.jpg"));
 			ground = ImageIO.read(this.getClass().getResourceAsStream("grass.jpg"));
-			//lava = ImageIO.read(this.getClass().getResourceAsStream("lava.jpg"));
-			//sand = ImageIO.read(this.getClass().getResourceAsStream("sand.jpg"));
+			lava = ImageIO.read(this.getClass().getResourceAsStream("lava.png"));
+			sand = ImageIO.read(this.getClass().getResourceAsStream("sand.jpg"));
 		}catch (IOException e){
 			System.out.println("Cant load images");
 		}
