@@ -33,7 +33,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JLabel PortLabel = new JLabel();
 	JLabel JoinLabel = new JLabel();
 	JLabel HostLabel = new JLabel();
-	static int intJoin = 0;
+	int intW = 0;
 	
 	
 	//Methods
@@ -63,6 +63,12 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
 			theGamePanel.repaint();
+		}else if(evt.getSource() == ssm){
+			if(intW == 0){
+				theGamePanel.intP1DefY = 0;
+			}else if(intW == 1){
+				theGamePanel.intP1DefY = -2;
+			}
 		}
 		if(evt.getSource() == QuitGameButton){
 			System.exit(0);
@@ -163,7 +169,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public void keyReleased(KeyEvent evt){
 		if(evt.getSource() == ssm){
 			if(evt.getKeyChar() == 'w'){
-				theGamePanel.intP1DefY = 0;
+				//theGamePanel.intP1DefY = 0;
+				intW = 0;
 			}else if(evt.getKeyChar() == 's'){
 				theGamePanel.intP1DefY = 0;
 			}else if(evt.getKeyChar() == 'a'){
@@ -179,7 +186,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public void keyPressed(KeyEvent evt){
 		if(evt.getSource() == ssm){
 			if(evt.getKeyChar() == 'w'){
-				theGamePanel.intP1DefY = -2;
+				intW = 1;
+				//theGamePanel.intP1DefY = -2;
 			}else if(evt.getKeyChar() == 's'){
 				theGamePanel.intP1DefY = +2;
 			}else if(evt.getKeyChar() == 'a'){

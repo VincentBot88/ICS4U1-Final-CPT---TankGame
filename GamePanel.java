@@ -25,7 +25,6 @@ public class GamePanel extends JPanel{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
-	SuperSocketMasterTank ssm;
 	
 
 
