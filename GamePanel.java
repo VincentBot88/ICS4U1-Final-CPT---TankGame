@@ -31,9 +31,14 @@ public class GamePanel extends JPanel{
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		BufferedReader map = null;
+		BufferedReader GrasslandMap = null;
+		BufferedReader DesertMap = null;
+		BufferedReader LavaMap = null;
+		
 		try{
-			map = new BufferedReader(new FileReader("map.csv"));
+			GrasslandMap = new BufferedReader(new FileReader("Grassland.csv"));
+			DesertMap = new BufferedReader(new FileReader("Desert.csv"));
+			LavaMap = new BufferedReader(new FileReader("Lava.csv"));
 		}catch(FileNotFoundException e){
 			System.out.println("File not found!");
 		}
@@ -48,7 +53,7 @@ public class GamePanel extends JPanel{
 		int col;
 		for(row = 0; row < 18; row++){
 			try{
-				strLine = map.readLine();
+				strLine = GrasslandMap.readLine();
 			}catch(IOException e){
 				System.out.println("Error reading from file");
 			}
@@ -64,7 +69,9 @@ public class GamePanel extends JPanel{
 			}
 		}
 		try{
-			map.close();
+			GrasslandMap.close();
+			DesertMap.close();
+			LavaMap.close();
 		}catch(IOException e){
 			System.out.println("Unable to close file");
 		}
