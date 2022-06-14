@@ -26,7 +26,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JButton HostButton = new JButton();
 	JButton StartButton = new JButton();
 	JButton JoinButton = new JButton();
-	JButton SendButton = new JButton();
 	String[] strMapSelects = {"Grassland", "Desert", "Lava"};
 	JComboBox MapSelectBox = new JComboBox();
 	
@@ -51,11 +50,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 
 	}
 	public void mousePressed(MouseEvent evt) {
-			if(evt.getButton()==1 && theGamePanel.bulletVelocity == 0){
-				theGamePanel.mouseX = evt.getX();
-				theGamePanel.mouseY = evt.getY();
-				theGamePanel.bulletVelocity = 10;
-			}
+		if(evt.getButton()==1 && theGamePanel.bulletVelocity == 0){
+			theGamePanel.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+			theGamePanel.bulletVelocity = 10;
+		}
 	}
 	
 	public void mouseReleased(MouseEvent evt){
@@ -70,7 +69,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 	
 	public void actionPerformed(ActionEvent evt){
-		//System.out.println(evt.getSource());
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
 			theGamePanel.repaint();
@@ -142,9 +140,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.remove(JoinButton);
 			thePanel.add(HostGameButton);
 			thePanel.add(JoinGameButton);
-			
+		
 		} 
-
 		if(evt.getSource() == HostButton){
 			//Opens server and allows players to join
 			//When a player joins, print something just above the lines saying "Players: P1, P2 ...."
@@ -168,7 +165,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theFrame.pack();
 				theFrame.requestFocus();
 				theGamePanel.add(theScrollBar);
-				theGamePanel.add(SendButton);
 				theGamePanel.add(chatToSend);
 			}
 		}
@@ -179,7 +175,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theFrame.pack();
 			theFrame.requestFocus();	
 			theGamePanel.add(theScrollBar);
-			theGamePanel.add(SendButton);
 			theGamePanel.add(chatToSend);
 		}
 		if(evt.getSource() == MapSelectBox){
@@ -226,9 +221,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			
 			System.out.println("sending message over network"+ssm);
 			ssm.sendText("P1: ");
-			if(evt.getKeyCode() == 32){
-				
-			}
+		
 	}
 	public void keyTyped(KeyEvent evt){
 		ssm.sendText("Moving");
@@ -266,18 +259,13 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		
 		//Scroll Bar
 		theScrollBar.setSize(240, 550);
-		theScrollBar.setLocation(1000, 10);
+		theScrollBar.setLocation(1000, 40);
 		chatToReceive.setEditable(false);
 		
 		//Chat Textfield
-		chatToSend.setSize(130, 30);
+		chatToSend.setSize(240, 30);
 		chatToSend.setLocation(1000, 610);
 		chatToSend.addActionListener(this);
-		
-		//Send Button
-		SendButton = new JButton("Send");
-		SendButton.setSize(75, 30);
-		SendButton.setLocation(1165, 610);
 		
 		//Quit Button
 		QuitGameButton = new JButton("Quit Game");
