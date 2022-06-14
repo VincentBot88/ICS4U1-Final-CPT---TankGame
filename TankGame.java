@@ -167,7 +167,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 	
 	public void keyReleased(KeyEvent evt){
-		if(evt.getSource() == ssm){
+		//if(evt.getSource() == ssm){
 			if(evt.getKeyChar() == 'w'){
 				//theGamePanel.intP1DefY = 0;
 				intW = 0;
@@ -181,10 +181,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			if(evt.getKeyCode() == 32){
 				
 			}
-		}
+		//}
 	}
 	public void keyPressed(KeyEvent evt){
-		if(evt.getSource() == ssm){
+		//if(evt.getSource() == ssm){
 			if(evt.getKeyChar() == 'w'){
 				intW = 1;
 				//theGamePanel.intP1DefY = -2;
@@ -199,7 +199,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			if(evt.getKeyCode() == 32){
 				
 			}
-		}
+		//}
 	}
 	public void keyTyped(KeyEvent evt){
 		
