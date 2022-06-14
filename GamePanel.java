@@ -25,6 +25,8 @@ public class GamePanel extends JPanel{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
+	BufferedImage sand = null;
+	BufferedImage lava = null;
 	
 
 
@@ -76,8 +78,6 @@ public class GamePanel extends JPanel{
 			System.out.println("Unable to close file");
 		}
 			
-			
-			
 		//P1
 		g.drawImage(P1img, intP1X, intP1Y, null);
 		// movement
@@ -119,6 +119,8 @@ public class GamePanel extends JPanel{
 			P4img = ImageIO.read(this.getClass().getResourceAsStream("tank_orange.png"));
 			wall = ImageIO.read(this.getClass().getResourceAsStream("building.jpg"));
 			ground = ImageIO.read(this.getClass().getResourceAsStream("grass.jpg"));
+			lava = ImageIO.read(this.getClass().getResourceAsStream("lava.jpg"));
+			sand = ImageIO.read(this.getClass().getResourceAsStream("sand.jpg"));
 		}catch (IOException e){
 			System.out.println("Cant load images");
 		}

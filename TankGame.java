@@ -173,6 +173,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theFrame.pack();
 			theFrame.requestFocus();	
 		}
+		if(evt.getSource() == MapSelectBox){
+		
+		}
 	}
 	
 	public void keyReleased(KeyEvent evt){
