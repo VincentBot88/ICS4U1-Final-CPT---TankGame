@@ -31,6 +31,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JComboBox MapSelectBox = new JComboBox();
 	
 	JTextArea chatBox = new JTextArea();
+	JTextField chatTextField = new JTextField();
 	JScrollPane theScrollBar = new JScrollPane(chatBox);
 	
 	JTextField IPTextField = new JTextField("localhost");
@@ -172,6 +173,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theFrame.requestFocus();	
 			theGamePanel.add(theScrollBar);
 			theGamePanel.add(SendButton);
+			theGamePanel.add(chatTextField);
 		}
 		if(evt.getSource() == MapSelectBox){
 		
@@ -254,9 +256,13 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		chatBox.setEditable(false);
 		
 		//Send Button
+		SendButton = new JButton("Send");
 		SendButton.setSize(75, 30);
 		SendButton.setLocation(1165, 610);
 		
+		//Chat Box Area
+		chatTextField.setSize(130, 30);
+		chatTextField.setLocation(1000, 610);
 		
 		//Quit Button
 		QuitGameButton = new JButton("Quit Game");
