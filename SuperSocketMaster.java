@@ -17,8 +17,18 @@ import java.util.Vector;
 import java.util.Enumeration;
 import java.util.concurrent.locks.ReentrantLock;
 
-
-public class SuperSocketMasterTank{
+/**
+ * <h1>SuperSocketMaster</h1>
+ * This class gives Java students the ability to quickly open a Java network socket<p>
+ * They can then send outgoing text over the socket<p>
+ * They can recieve incoming text over the socket<p>
+ * Incoming text triggers an ActionEvent<p>
+ * This class is meant to be used in Java Swing/AWT programs
+ * @author  Alfred Cadawas
+ * @version 2.0
+ * @since   2016-04-21 
+ */
+public class SuperSocketMaster{
   // Properties
   private int intPort = 1337;
   private String strServerIP = null;
@@ -37,6 +47,7 @@ public class SuperSocketMasterTank{
    */
   public boolean sendText(String strText){
     if(soccon != null){
+		System.out.println("ssm is sending"+strText);
       return soccon.sendText(strText);
     }
     return false;
@@ -139,7 +150,7 @@ public class SuperSocketMasterTank{
    * @param intPort TCP Port you want to use for your connection
    * @param listener Swing/AWT program's ActionListener.  Usually "this"
    */
-  public SuperSocketMasterTank(int intPort, ActionListener listener){
+  public SuperSocketMaster(int intPort, ActionListener listener){
     this.addActionListener(listener);
     this.intPort = intPort;
   }
@@ -150,7 +161,7 @@ public class SuperSocketMasterTank{
    * @param intPort TCP Port you want to use for your connection
    * @param listener Swing/AWT program's ActionListener.  Usually "this"
    */
-  public SuperSocketMasterTank(String strServerIP, int intPort, ActionListener listener){
+  public SuperSocketMaster(String strServerIP, int intPort, ActionListener listener){
     this.addActionListener(listener);
     this.intPort = intPort;
     this.strServerIP = strServerIP;
@@ -166,8 +177,8 @@ public class SuperSocketMasterTank{
     * *****************************************************************/
   
   private class SocketConnection implements Runnable, ActionListener{
-    SuperSocketMasterTank parentssm = null;
-    int intPort = 1337;
+    SuperSocketMaster parentssm = null;
+    int intPort = 9001;
     String strServerIP = null;
     String strIncomingText = "";
     ServerSocket serverSocketObject = null;
@@ -373,7 +384,7 @@ public class SuperSocketMasterTank{
         return true;
       }
     }
-    public SocketConnection(String strServerIP, int intPort, SuperSocketMasterTank parentssm){
+    public SocketConnection(String strServerIP, int intPort, SuperSocketMaster parentssm){
       this.strServerIP = strServerIP;
       this.intPort = intPort;
       this.parentssm = parentssm;
@@ -386,7 +397,7 @@ public class SuperSocketMasterTank{
     }
   }
   private class ClientConnection implements Runnable{
-    SuperSocketMasterTank parentssm = null;
+    SuperSocketMaster parentssm = null;
     SocketConnection socketConnection = null;
     String strIncomingText = "";
     Socket socketObject = null;
@@ -429,7 +440,7 @@ public class SuperSocketMasterTank{
         return true;
       }
     }
-    public ClientConnection(SuperSocketMasterTank parentssm, Socket socketObject, SocketConnection socketConnection){
+    public ClientConnection(SuperSocketMaster parentssm, Socket socketObject, SocketConnection socketConnection){
       this.socketConnection = socketConnection;
       this.socketObject = socketObject;
       this.parentssm = parentssm;  

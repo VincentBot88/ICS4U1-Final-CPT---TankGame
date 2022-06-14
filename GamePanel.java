@@ -26,14 +26,12 @@ public class GamePanel extends JPanel implements ActionListener{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
-<<<<<<< Updated upstream
+
 	BufferedImage sand = null;
 	BufferedImage lava = null;
-=======
-	SuperSocketMasterTank ssm;
+	SuperSocketMaster ssm;
 	//BufferedImage sand = null;
 	//BufferedImage lava = null;
->>>>>>> Stashed changes
 	
 	interface gameInterface{
 		void paintComponent();
@@ -142,8 +140,6 @@ public class GamePanel extends JPanel implements ActionListener{
 		}catch (IOException e){
 			System.out.println("Cant load images");
 		}
-		ssm = new SuperSocketMasterTank(6112, this);
-		ssm.connect();
 	}
 
 

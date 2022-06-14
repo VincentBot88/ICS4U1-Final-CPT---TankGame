@@ -12,7 +12,7 @@ import javax.swing.JComponent.*;
 
 public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener{
 	//Properties
-	SuperSocketMasterTank ssm;
+	SuperSocketMaster ssm;
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
 	MenuPanel thePanel = new MenuPanel();
 	GamePanel theGamePanel = new GamePanel();
@@ -146,7 +146,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			JoinButton.setEnabled(false); 
 			IPTextField.setEnabled(false);
 			PortTextField.setEnabled(false);
-			ssm = new SuperSocketMasterTank(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
+			ssm = new SuperSocketMaster(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
 			if(tankConnect){
 				thePanel.removeAll();
@@ -161,7 +161,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			HostButton.setEnabled(false);
 			IPTextField.setEnabled(false);
 			PortTextField.setEnabled(false);
-			ssm = new SuperSocketMasterTank(Integer.parseInt(PortTextField.getText()), this);
+			ssm = new SuperSocketMaster(Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
 		}
 		if(evt.getSource() == StartButton){
@@ -185,10 +185,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public void keyReleased(KeyEvent evt){
 			if(evt.getKeyChar() == 'w'){
 				theGamePanel.intP1DefY = 0;
-<<<<<<< Updated upstream
-				intW = 0;
-=======
->>>>>>> Stashed changes
 			}else if(evt.getKeyChar() == 's'){
 				theGamePanel.intP1DefY = 0;
 			}else if(evt.getKeyChar() == 'a'){
@@ -203,14 +199,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public void keyPressed(KeyEvent evt){
 		
 			if(evt.getKeyChar() == 'w'){
-<<<<<<< Updated upstream
-				intW = 1;
 				theGamePanel.intP1DefY = -2;
-=======
-				theGamePanel.intP1DefY = -2;
-				//System.out.println("sending message over network");
-				//ssm.sendText("p1tank,"+theGamePanel.intP1DefX+","+theGamePanel.intP1DefY);
->>>>>>> Stashed changes
 			}else if(evt.getKeyChar() == 's'){
 				theGamePanel.intP1DefY = +2;
 			}else if(evt.getKeyChar() == 'a'){
@@ -226,6 +215,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			}
 	}
 	public void keyTyped(KeyEvent evt){
+		ssm.sendText("ASDFASDFASDFAF!!!!!!!!");
 		
 	}
 	
