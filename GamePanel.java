@@ -6,8 +6,9 @@ import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
 import java.util.ArrayList;
+import java.net.*;
 
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements ActionListener{
 	//Properties
 	int intP1Y = 100;
 	int intP1X = 100;
@@ -25,12 +26,25 @@ public class GamePanel extends JPanel{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
+<<<<<<< Updated upstream
 	BufferedImage sand = null;
 	BufferedImage lava = null;
+=======
+	SuperSocketMasterTank ssm;
+	//BufferedImage sand = null;
+	//BufferedImage lava = null;
+>>>>>>> Stashed changes
 	
+	interface gameInterface{
+		void paintComponent();
+	}
 
 
 	//Methods
+	public void actionPerformed(ActionEvent evt){
+			
+	}
+	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		BufferedReader GrasslandMap = null;
@@ -128,6 +142,8 @@ public class GamePanel extends JPanel{
 		}catch (IOException e){
 			System.out.println("Cant load images");
 		}
+		ssm = new SuperSocketMasterTank(6112, this);
+		ssm.connect();
 	}
 
 

@@ -42,18 +42,17 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JLabel JoinLabel = new JLabel();
 	JLabel HostLabel = new JLabel();
 	JLabel MapLabel = new JLabel();
-	int intW = 0;
 	
 	//Methods
 	public void mouseMoved(MouseEvent evt){
 
 	}
 	public void mousePressed(MouseEvent evt) {
-		if(evt.getButton()==1 && theGamePanel.bulletVelocity == 0){
-			theGamePanel.mouseX = evt.getX();
-			theGamePanel.mouseY = evt.getY();
-			theGamePanel.bulletVelocity = 10;
-		}
+			if(evt.getButton()==1 && theGamePanel.bulletVelocity == 0){
+				theGamePanel.mouseX = evt.getX();
+				theGamePanel.mouseY = evt.getY();
+				theGamePanel.bulletVelocity = 10;
+			}
 	}
 	
 	public void mouseReleased(MouseEvent evt){
@@ -68,15 +67,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 	
 	public void actionPerformed(ActionEvent evt){
+		//System.out.println(evt.getSource());
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
 			theGamePanel.repaint();
-		}else if(evt.getSource() == ssm){
-			if(intW == 0){
-				theGamePanel.intP1DefY = 0;
-			}else if(intW == 1){
-				theGamePanel.intP1DefY = -2;
-			}
 		}
 		if(evt.getSource() == QuitGameButton){
 			System.exit(0);
@@ -184,13 +178,19 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		if(evt.getSource() == MapSelectBox){
 		
 		}
+		if(evt.getSource() == ssm){
+			String strIn = ssm.readText();
+			System.out.println("tank position"+strIn);
+		}
 	}
 	
 	public void keyReleased(KeyEvent evt){
-		//if(evt.getSource() == ssm){
 			if(evt.getKeyChar() == 'w'){
 				theGamePanel.intP1DefY = 0;
+<<<<<<< Updated upstream
 				intW = 0;
+=======
+>>>>>>> Stashed changes
 			}else if(evt.getKeyChar() == 's'){
 				theGamePanel.intP1DefY = 0;
 			}else if(evt.getKeyChar() == 'a'){
@@ -201,13 +201,18 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			if(evt.getKeyCode() == 32){
 				
 			}
-		//}
 	}
 	public void keyPressed(KeyEvent evt){
-		//if(evt.getSource() == ssm){
+		
 			if(evt.getKeyChar() == 'w'){
+<<<<<<< Updated upstream
 				intW = 1;
 				theGamePanel.intP1DefY = -2;
+=======
+				theGamePanel.intP1DefY = -2;
+				//System.out.println("sending message over network");
+				//ssm.sendText("p1tank,"+theGamePanel.intP1DefX+","+theGamePanel.intP1DefY);
+>>>>>>> Stashed changes
 			}else if(evt.getKeyChar() == 's'){
 				theGamePanel.intP1DefY = +2;
 			}else if(evt.getKeyChar() == 'a'){
@@ -216,10 +221,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.intP1DefX = +2;
 			}
 			
+			System.out.println("sending message over network"+ssm);
+			ssm.sendText("p1tank,");
 			if(evt.getKeyCode() == 32){
 				
 			}
-		//}
 	}
 	public void keyTyped(KeyEvent evt){
 		
@@ -345,8 +351,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		PortLabel.setSize(400, 50);
 		PortLabel.setLocation(750, 250);
 		
-		ssm = new SuperSocketMasterTank(6112, this);
-		ssm.connect();
 		
 		theFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
