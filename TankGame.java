@@ -30,9 +30,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	String[] strMapSelects = {"Grassland", "Desert", "Lava"};
 	JComboBox MapSelectBox = new JComboBox();
 	
-	JTextArea chatBox = new JTextArea();
-	JTextField chatTextField = new JTextField();
-	JScrollPane theScrollBar = new JScrollPane(chatBox);
+	JTextArea chatToReceive = new JTextArea();
+	JTextField chatToSend = new JTextField();
+	JScrollPane theScrollBar = new JScrollPane(chatToReceive);
 	
 	JTextField IPTextField = new JTextField("localhost");
 	JTextField PortTextField = new JTextField("6112");
@@ -177,7 +177,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theFrame.requestFocus();	
 			theGamePanel.add(theScrollBar);
 			theGamePanel.add(SendButton);
-			theGamePanel.add(chatTextField);
+			theGamePanel.add(chatToSend);
 		}
 		if(evt.getSource() == MapSelectBox){
 		
@@ -185,6 +185,13 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		if(evt.getSource() == ssm){
 			String strIn = ssm.readText();
 			System.out.println("tank position"+strIn);
+			chatToReceive.append(ssm.readText() + "\n");
+			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
+		}
+		if(evt.getSource() == chatToSend){
+			if(ssm != null){
+				ssm.sendText(chatToSend.getText());
+			}
 		}
 	}
 	
@@ -254,19 +261,20 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		MapLabel.setSize(400, 50);
 		MapLabel.setLocation(750, 330);
 		
-		//Chat area
-		theScrollBar.setSize(240, 500);
-		theScrollBar.setLocation(1000, 100);
-		chatBox.setEditable(false);
+		//Scroll Bar
+		theScrollBar.setSize(240, 550);
+		theScrollBar.setLocation(1000, 10);
+		chatToReceive.setEditable(false);
+		
+		//Chat Textfield
+		chatToSend.setSize(130, 30);
+		chatToSend.setLocation(1000, 610);
+		chatToSend.addActionListener(this);
 		
 		//Send Button
 		SendButton = new JButton("Send");
 		SendButton.setSize(75, 30);
 		SendButton.setLocation(1165, 610);
-		
-		//Chat Box Area
-		chatTextField.setSize(130, 30);
-		chatTextField.setLocation(1000, 610);
 		
 		//Quit Button
 		QuitGameButton = new JButton("Quit Game");
