@@ -162,14 +162,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			PortTextField.setEnabled(false);
 			ssm = new SuperSocketMaster(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
-			intJoin = 1;
-			int jarg = intJoin;
 			if(tankConnect){
-				//thePanel.removeAll();
-				//theFrame.setContentPane(theGamePanel);
-				//theFrame.pack();
-				//theFrame.requestFocus();
-				//int intJoin = 1;
+				thePanel.removeAll();
+				theFrame.setContentPane(theGamePanel);
+				theFrame.pack();
+				theFrame.requestFocus();
 			}
 		}
 		if(evt.getSource() == StartButton){
