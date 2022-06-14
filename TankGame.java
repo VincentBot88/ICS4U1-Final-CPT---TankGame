@@ -8,6 +8,7 @@ import java.awt.image.*;
 import javax.imageio.*;
 import java.util.ArrayList;
 import java.net.*;
+import javax.swing.JComponent.*;
 
 public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener{
 	//Properties
@@ -25,8 +26,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JButton HostButton = new JButton();
 	JButton StartButton = new JButton();
 	JButton JoinButton = new JButton();
-	String[] mapSelects = {"Grassland", "Desert", "Lava"};
-	JComboBox MapSelectBox = new JComboBox(mapSelects);
+	String[] strMapSelects = {"Grassland", "Desert", "Lava"};
+	JComboBox MapSelectBox = new JComboBox();
 	
 	JTextField IPTextField = new JTextField("localhost");
 	JTextField PortTextField = new JTextField("6112");
@@ -232,8 +233,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		theTimer.start();
 		
 		//Map Selection Drop Down Menu
-		MapSelectBox = new JComboBox();
-		//MapSelectBox.setSelectedIndex(1);
+		MapSelectBox = new JComboBox(strMapSelects);
 		MapSelectBox.setSize(150, 50);
 		MapSelectBox.setLocation(840, 330);
 		MapSelectBox.addActionListener(this);
