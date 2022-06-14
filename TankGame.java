@@ -41,6 +41,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JLabel JoinLabel = new JLabel();
 	JLabel HostLabel = new JLabel();
 	JLabel MapLabel = new JLabel();
+	JLabel ChatLabel = new JLabel();
 	
 	int intJoin = 0;
 	
@@ -168,6 +169,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theFrame.requestFocus();
 				theGamePanel.add(theScrollBar);
 				theGamePanel.add(chatToSend);
+				theGamePanel.add(ChatLabel);
 			}
 		}
 		if(evt.getSource() == StartButton){
@@ -178,6 +180,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theFrame.requestFocus();	
 			theGamePanel.add(theScrollBar);
 			theGamePanel.add(chatToSend);
+			theGamePanel.add(ChatLabel);
 		}
 		if(evt.getSource() == MapSelectBox){
 		
@@ -264,6 +267,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		chatToSend.setSize(240, 30);
 		chatToSend.setLocation(1000, 610);
 		chatToSend.addActionListener(this);
+		
+		//Chat Label
+		ChatLabel = new JLabel("Chat: ");
+		ChatLabel.setSize(400, 70);
+		ChatLabel.setLocation(1000, 0);
 		
 		//Quit Button
 		QuitGameButton = new JButton("Quit Game");
