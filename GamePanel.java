@@ -25,8 +25,8 @@ public class GamePanel extends JPanel{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
-	//BufferedImage sand = null;
-	//BufferedImage lava = null;
+	BufferedImage sand = null;
+	BufferedImage lava = null;
 	
 
 
@@ -67,6 +67,10 @@ public class GamePanel extends JPanel{
 					g.drawImage(ground, col * 40, row * 40, null);
 				}else if(strData[row][col].equals("w")){
 					g.drawImage(wall, col * 40, row * 40, null);
+				} else if(strData[row][col].equals("l")){
+					g.drawImage(lava, col * 40, row * 40, null);
+				} else if(strData[row][col].equals("s")){
+					g.drawImage(sand, col * 40, row * 40, null);
 				}
 			}
 		}
