@@ -43,6 +43,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JLabel HostLabel = new JLabel();
 	JLabel MapLabel = new JLabel();
 	
+	int intJoin = 0;
+	
+	
 	//Methods
 	public void mouseMoved(MouseEvent evt){
 
@@ -141,21 +144,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(JoinGameButton);
 			
 		} 
-		if(evt.getSource() == JoinButton){
-			//Joins the server
-			//When the player joins, print something just above the lines saying "Players in lobby: P1, P2 ...."
-			JoinButton.setEnabled(false); 
-			IPTextField.setEnabled(false);
-			PortTextField.setEnabled(false);
-			ssm = new SuperSocketMaster(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
-			boolean tankConnect = ssm.connect();
-			if(tankConnect){
-				thePanel.removeAll();
-				theFrame.setContentPane(theGamePanel);
-				theFrame.pack();
-				theFrame.requestFocus();
-			}
-		}
+
 		if(evt.getSource() == HostButton){
 			//Opens server and allows players to join
 			//When a player joins, print something just above the lines saying "Players: P1, P2 ...."
@@ -164,6 +153,24 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			PortTextField.setEnabled(false);
 			ssm = new SuperSocketMaster(Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
+		}
+		if(evt.getSource() == JoinButton){
+			//Joins the server
+			//When the player joins, print something just above the lines saying "Players in lobby: P1, P2 ...."
+			JoinButton.setEnabled(false); 
+			IPTextField.setEnabled(false);
+			PortTextField.setEnabled(false);
+			ssm = new SuperSocketMaster(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
+			boolean tankConnect = ssm.connect();
+			intJoin = 1;
+			int jarg = intJoin;
+			if(tankConnect){
+				//thePanel.removeAll();
+				//theFrame.setContentPane(theGamePanel);
+				//theFrame.pack();
+				//theFrame.requestFocus();
+				//int intJoin = 1;
+			}
 		}
 		if(evt.getSource() == StartButton){
 			//Clears screen then start the gameplay
