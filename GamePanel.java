@@ -25,15 +25,22 @@ public class GamePanel extends JPanel{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
+	//BufferedImage sand = null;
+	//BufferedImage lava = null;
 	
 
 
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		BufferedReader map = null;
+		BufferedReader GrasslandMap = null;
+		BufferedReader DesertMap = null;
+		BufferedReader LavaMap = null;
+		
 		try{
-			map = new BufferedReader(new FileReader("map.csv"));
+			GrasslandMap = new BufferedReader(new FileReader("Grassland.csv"));
+			DesertMap = new BufferedReader(new FileReader("Desert.csv"));
+			LavaMap = new BufferedReader(new FileReader("Lava.csv"));
 		}catch(FileNotFoundException e){
 			System.out.println("File not found!");
 		}
@@ -48,7 +55,7 @@ public class GamePanel extends JPanel{
 		int col;
 		for(row = 0; row < 18; row++){
 			try{
-				strLine = map.readLine();
+				strLine = GrasslandMap.readLine();
 			}catch(IOException e){
 				System.out.println("Error reading from file");
 			}
@@ -64,12 +71,12 @@ public class GamePanel extends JPanel{
 			}
 		}
 		try{
-			map.close();
+			GrasslandMap.close();
+			DesertMap.close();
+			LavaMap.close();
 		}catch(IOException e){
 			System.out.println("Unable to close file");
 		}
-			
-			
 			
 		//P1
 		g.drawImage(P1img, intP1X, intP1Y, null);
@@ -95,7 +102,7 @@ public class GamePanel extends JPanel{
 		}
 
 		if(bulletX > 720 || bulletY > 1280 || bulletX < 0 || bulletY < 0){
-			System.out.println(bulletX);
+			//System.out.println(bulletX);
 			bulletVelocity = 0;
 			bulletX = intP1Y;
 			bulletY = intP1X;
@@ -112,6 +119,8 @@ public class GamePanel extends JPanel{
 			P4img = ImageIO.read(this.getClass().getResourceAsStream("tank_orange.png"));
 			wall = ImageIO.read(this.getClass().getResourceAsStream("building.jpg"));
 			ground = ImageIO.read(this.getClass().getResourceAsStream("grass.jpg"));
+			//lava = ImageIO.read(this.getClass().getResourceAsStream("lava.jpg"));
+			//sand = ImageIO.read(this.getClass().getResourceAsStream("sand.jpg"));
 		}catch (IOException e){
 			System.out.println("Cant load images");
 		}
