@@ -55,6 +55,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.mouseY = evt.getY();
 			theGamePanel.bulletVelocity = 10;
 		}
+		ssm.sendText("P1: Shot");
 	}
 	
 	public void mouseReleased(MouseEvent evt){
@@ -150,6 +151,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			PortTextField.setEnabled(false);
 			ssm = new SuperSocketMaster(Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
+			
 		}
 		if(evt.getSource() == JoinButton){
 			//Joins the server
@@ -165,7 +167,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theFrame.pack();
 				theFrame.requestFocus();
 				theGamePanel.add(theScrollBar);
-				theGamePanel.add(chatToSend);
+				//theGamePanel.add(chatToSend);
 			}
 		}
 		if(evt.getSource() == StartButton){
@@ -175,7 +177,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theFrame.pack();
 			theFrame.requestFocus();	
 			theGamePanel.add(theScrollBar);
-			theGamePanel.add(chatToSend);
+			//theGamePanel.add(chatToSend);
 		}
 		if(evt.getSource() == MapSelectBox){
 		
@@ -194,37 +196,35 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 	
 	public void keyReleased(KeyEvent evt){
-			if(evt.getKeyChar() == 'w'){
-				theGamePanel.intP1DefY = 0;
-			}else if(evt.getKeyChar() == 's'){
-				theGamePanel.intP1DefY = 0;
-			}else if(evt.getKeyChar() == 'a'){
-				theGamePanel.intP1DefX = 0;
-			}else if(evt.getKeyChar() == 'd'){
-				theGamePanel.intP1DefX = 0;
-			}
-			if(evt.getKeyCode() == 32){
-				
-			}
+		if(evt.getKeyChar() == 'w'){
+			theGamePanel.intP1DefY = 0;
+		}else if(evt.getKeyChar() == 's'){
+			theGamePanel.intP1DefY = 0;
+		}else if(evt.getKeyChar() == 'a'){
+			theGamePanel.intP1DefX = 0;
+		}else if(evt.getKeyChar() == 'd'){
+			theGamePanel.intP1DefX = 0;
+		}
 	}
 	public void keyPressed(KeyEvent evt){
-		
-			if(evt.getKeyChar() == 'w'){
-				theGamePanel.intP1DefY = -2;
-			}else if(evt.getKeyChar() == 's'){
-				theGamePanel.intP1DefY = +2;
-			}else if(evt.getKeyChar() == 'a'){
-				theGamePanel.intP1DefX = -2;
-			}else if(evt.getKeyChar() == 'd'){
-				theGamePanel.intP1DefX = +2;
-			}
-			
-			System.out.println("sending message over network"+ssm);
-			ssm.sendText("P1: ");
+		if(evt.getKeyChar() == 'w'){
+			theGamePanel.intP1DefY = -2;
+		}else if(evt.getKeyChar() == 's'){
+			theGamePanel.intP1DefY = +2;
+		}else if(evt.getKeyChar() == 'a'){
+			theGamePanel.intP1DefX = -2;
+		}else if(evt.getKeyChar() == 'd'){
+			theGamePanel.intP1DefX = +2;
+		}
+		if(evt.getKeyCode() == 84){
+			theGamePanel.add(chatToSend);
+		}
+		System.out.println("sending message over network"+ssm);
+		ssm.sendText("P1: Moving");
 		
 	}
 	public void keyTyped(KeyEvent evt){
-		ssm.sendText("Moving");
+		ssm.sendText("Key Typed");
 		
 	}
 	
