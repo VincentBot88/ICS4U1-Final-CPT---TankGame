@@ -181,8 +181,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm = new SuperSocketMaster(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
 			
-			
-			//theGamePanel.selectedMap = returnSelectedMapFromServer;
+			//String returnSelectedMapFromServer = ssm.readText();;
+			//if(ssm.readText() == "Lava"){
+			//	returnSelectedMapFromServer = "Lava"; 
+			//	theGamePanel.selectedMap = returnSelectedMapFromServer;
+			//}
 			
 			//if(tankConnect){
 				thePanel.removeAll();
@@ -198,10 +201,13 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			//Map Select
 			if(MapSelectBox.getSelectedItem() == "Grassland"){
 				theGamePanel.selectedMap = "Grassland";
+				ssm.sendText("Grassland");
 			} else if (MapSelectBox.getSelectedItem() == "Desert"){
 				theGamePanel.selectedMap = "Desert";
+				ssm.sendText("Desert");
 			} else if (MapSelectBox.getSelectedItem() == "Lava"){
 				theGamePanel.selectedMap = "Lava";
+				ssm.sendText("Lava");
 			}
 			//Clears screen then start the gameplay
 			thePanel.removeAll();
