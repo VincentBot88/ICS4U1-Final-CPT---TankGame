@@ -180,6 +180,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			PortTextField.setEnabled(false);
 			ssm = new SuperSocketMaster(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
+			
+			
+			//theGamePanel.selectedMap = returnSelectedMapFromServer;
+			
 			//if(tankConnect){
 				thePanel.removeAll();
 				theFrame.setContentPane(theGamePanel);
