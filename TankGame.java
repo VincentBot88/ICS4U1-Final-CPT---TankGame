@@ -191,25 +191,23 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				ChatLabel.setForeground(Color.RED);
 			}
 		if(evt.getSource() == StartButton){
+			//Map Select
+			if(MapSelectBox.getSelectedItem() == "Grassland"){
+				theGamePanel.selectedMap = "Grassland";
+			} else if (MapSelectBox.getSelectedItem() == "Desert"){
+				theGamePanel.selectedMap = "Desert";
+			} else if (MapSelectBox.getSelectedItem() == "Lava"){
+				theGamePanel.selectedMap = "Lava";
+			}
 			//Clears screen then start the gameplay
 			thePanel.removeAll();
 			theFrame.setContentPane(theGamePanel);
 			theFrame.pack();
-			theFrame.requestFocus();	
+			theFrame.requestFocus();
 			theGamePanel.add(theScrollBar);
 			theGamePanel.add(chatToSend);
 			theGamePanel.add(ChatLabel);
 			ChatLabel.setForeground(Color.RED);
-			
-		}
-		if(evt.getSource() == MapSelectBox){
-			if(MapSelectBox.getSelectedItem() == "Grassland"){
-				
-			} else if (MapSelectBox.getSelectedItem() == "Desert"){
-				
-			} else if (MapSelectBox.getSelectedItem() == "Lava"){
-				
-			}
 		}
 		if(evt.getSource() == ssm){
 			String strIn = ssm.readText();

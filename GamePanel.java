@@ -16,6 +16,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	int intP1DefY = 0;
 	int mouseX;
 	int mouseY;
+	String selectedMap;
 	double bulletX = intP1X + 25;
 	double bulletY = intP1Y + 20;
 	boolean fire = false;
@@ -26,17 +27,13 @@ public class GamePanel extends JPanel implements ActionListener{
 	BufferedImage P4img = null;
 	BufferedImage ground = null;
 	BufferedImage wall = null;
-
 	BufferedImage sand = null;
 	BufferedImage lava = null;
 	SuperSocketMaster ssm;
-	//BufferedImage sand = null;
-	//BufferedImage lava = null;
 	
 	interface gameInterface{
 		void paintComponent();
 	}
-
 
 	//Methods
 	public void actionPerformed(ActionEvent evt){
@@ -65,55 +62,58 @@ public class GamePanel extends JPanel implements ActionListener{
 			
 		int row;
 		int col;
-		
-		for(row = 0; row < 18; row++){
-			try{
-				strLine = GrasslandMap.readLine();
-			}catch(IOException e){
-				System.out.println("Error reading from file");
-			}
-			strRow = strLine.split(","); //Split based on commas
-			//draws map
-			for(col = 0; col < 24; col++){
-				strData[row][col] = strRow[col];
-				if(strData[row][col].equals("g")){
-					g.drawImage(ground, col * 40, row * 40, null);
-				}else if(strData[row][col].equals("w")){
-					g.drawImage(wall, col * 40, row * 40, null);
+		if (selectedMap == "Grassland") {
+			for(row = 0; row < 18; row++){
+				try{
+					strLine = GrasslandMap.readLine();
+				}catch(IOException e){
+					System.out.println("Error reading from file");
+				}
+				strRow = strLine.split(","); //Split based on commas
+				//draws map
+				for(col = 0; col < 24; col++){
+					strData[row][col] = strRow[col];
+					if(strData[row][col].equals("g")){
+						g.drawImage(ground, col * 40, row * 40, null);
+					}else if(strData[row][col].equals("w")){
+						g.drawImage(wall, col * 40, row * 40, null);
+					}
 				}
 			}
-		}
-		for(row = 0; row < 18; row++){
-			try{
-				strLine = LavaMap.readLine();
-			}catch(IOException e){
-				System.out.println("Error reading from file");
-			}
-			strRow = strLine.split(","); //Split based on commas
-			//draws map
-			for(col = 0; col < 24; col++){
-				strData[row][col] = strRow[col];
-				if(strData[row][col].equals("w")){
-					g.drawImage(wall, col * 40, row * 40, null);
-				} else if(strData[row][col].equals("l")){
-					g.drawImage(lava, col * 40, row * 40, null);
+		} else if (selectedMap == "Lava") {
+			for(row = 0; row < 18; row++){
+				try{
+					strLine = LavaMap.readLine();
+				}catch(IOException e){
+					System.out.println("Error reading from file");
+				}
+				strRow = strLine.split(","); //Split based on commas
+				//draws map
+				for(col = 0; col < 24; col++){
+					strData[row][col] = strRow[col];
+					if(strData[row][col].equals("w")){
+						g.drawImage(wall, col * 40, row * 40, null);
+					} else if(strData[row][col].equals("l")){
+						g.drawImage(lava, col * 40, row * 40, null);
+					}
 				}
 			}
-		}
-		for(row = 0; row < 18; row++){
-			try{
-				strLine = DesertMap.readLine();
-			}catch(IOException e){
-				System.out.println("Error reading from file");
-			}
-			strRow = strLine.split(","); //Split based on commas
-			//draws map
-			for(col = 0; col < 24; col++){
-				strData[row][col] = strRow[col];
-				if(strData[row][col].equals("w")){
-					g.drawImage(wall, col * 40, row * 40, null);
-				} else if(strData[row][col].equals("s")){
-					g.drawImage(sand, col * 40, row * 40, null);
+		} else if (selectedMap == "Desert") {
+			for(row = 0; row < 18; row++){
+				try{
+					strLine = DesertMap.readLine();
+				}catch(IOException e){
+					System.out.println("Error reading from file");
+				}
+				strRow = strLine.split(","); //Split based on commas
+				//draws map
+				for(col = 0; col < 24; col++){
+					strData[row][col] = strRow[col];
+					if(strData[row][col].equals("w")){
+						g.drawImage(wall, col * 40, row * 40, null);
+					} else if(strData[row][col].equals("s")){
+						g.drawImage(sand, col * 40, row * 40, null);
+					}
 				}
 			}
 		}
@@ -154,6 +154,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		intP1Y = intP1Y + intP1DefY;
 		intP1X = intP1X + intP1DefX;
 	}
+	
 	
 	//Constructor
 	public GamePanel(){
