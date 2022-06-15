@@ -58,13 +58,14 @@ public class GamePanel extends JPanel implements ActionListener{
 		}
 			
 		String strData[][];
-		strData = new String [18][32];
+		strData = new String [18][24];
 			
 		String strLine = "";
 		String strRow[];
 			
 		int row;
 		int col;
+		
 		for(row = 0; row < 18; row++){
 			try{
 				strLine = GrasslandMap.readLine();
@@ -73,14 +74,44 @@ public class GamePanel extends JPanel implements ActionListener{
 			}
 			strRow = strLine.split(","); //Split based on commas
 			//draws map
-			for(col = 0; col < 32; col++){
+			for(col = 0; col < 24; col++){
 				strData[row][col] = strRow[col];
 				if(strData[row][col].equals("g")){
 					g.drawImage(ground, col * 40, row * 40, null);
 				}else if(strData[row][col].equals("w")){
 					g.drawImage(wall, col * 40, row * 40, null);
+				}
+			}
+		}
+		for(row = 0; row < 18; row++){
+			try{
+				strLine = LavaMap.readLine();
+			}catch(IOException e){
+				System.out.println("Error reading from file");
+			}
+			strRow = strLine.split(","); //Split based on commas
+			//draws map
+			for(col = 0; col < 24; col++){
+				strData[row][col] = strRow[col];
+				if(strData[row][col].equals("w")){
+					g.drawImage(wall, col * 40, row * 40, null);
 				} else if(strData[row][col].equals("l")){
 					g.drawImage(lava, col * 40, row * 40, null);
+				}
+			}
+		}
+		for(row = 0; row < 18; row++){
+			try{
+				strLine = DesertMap.readLine();
+			}catch(IOException e){
+				System.out.println("Error reading from file");
+			}
+			strRow = strLine.split(","); //Split based on commas
+			//draws map
+			for(col = 0; col < 24; col++){
+				strData[row][col] = strRow[col];
+				if(strData[row][col].equals("w")){
+					g.drawImage(wall, col * 40, row * 40, null);
 				} else if(strData[row][col].equals("s")){
 					g.drawImage(sand, col * 40, row * 40, null);
 				}

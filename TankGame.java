@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.net.*;
 import javax.swing.JComponent.*;
 
-public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener{
+
+public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener, ItemListener{
 	//Properties
 	SuperSocketMaster ssm;
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
@@ -41,11 +42,19 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JLabel JoinLabel = new JLabel();
 	JLabel HostLabel = new JLabel();
 	JLabel MapLabel = new JLabel();
+	JLabel ChatLabel = new JLabel();
 	
 	int intJoin = 0;
 	
-	
 	//Methods
+	public void itemStateChanged(ItemEvent e){
+		if(MapSelectBox.getSelectedItem().equals("Grassland"))
+			
+		if(MapSelectBox.getSelectedItem().equals("Desert"))
+			System.out.println("Hi");
+		if(MapSelectBox.getSelectedItem().equals("Lava"))
+			System.out.println("Hi");
+	}
 	public void mouseMoved(MouseEvent evt){
 
 	}
@@ -168,6 +177,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theFrame.requestFocus();
 				theGamePanel.add(theScrollBar);
 				theGamePanel.add(chatToSend);
+<<<<<<< HEAD
+=======
+				theGamePanel.add(ChatLabel);
+>>>>>>> edfcb77c59c6942db8df037bba0df0ea75bccbf5
 			}
 		}
 		if(evt.getSource() == StartButton){
@@ -178,6 +191,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theFrame.requestFocus();	
 			theGamePanel.add(theScrollBar);
 			theGamePanel.add(chatToSend);
+<<<<<<< HEAD
+=======
+			theGamePanel.add(ChatLabel);
+>>>>>>> edfcb77c59c6942db8df037bba0df0ea75bccbf5
 		}
 		if(evt.getSource() == MapSelectBox){
 		
@@ -199,6 +216,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			if(ssm != null){
 				ssm.sendText(chatToSend.getText());
 			}
+			theFrame.requestFocus();
 		}
 	}
 	
@@ -223,13 +241,14 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = +2;
 		}
-		if(evt.getKeyCode() == 84){
-			theGamePanel.add(chatToSend);
-		}
+
 		System.out.println("sending message over network"+ssm);
 		ssm.sendText("P1: Moving");
+<<<<<<< HEAD
 		theGamePanel.intP1DefY = -2;
 		
+=======
+>>>>>>> edfcb77c59c6942db8df037bba0df0ea75bccbf5
 	}
 	public void keyTyped(KeyEvent evt){
 		ssm.sendText("Key Typed");
@@ -259,6 +278,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		MapSelectBox.setSize(150, 50);
 		MapSelectBox.setLocation(840, 330);
 		MapSelectBox.addActionListener(this);
+		MapSelectBox.addItemListener(this);
 		
 		//Map Label
 		MapLabel = new JLabel("Map: ");
@@ -274,6 +294,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		chatToSend.setSize(240, 30);
 		chatToSend.setLocation(1000, 610);
 		chatToSend.addActionListener(this);
+		
+		//Chat Label
+		ChatLabel = new JLabel("Chat: ");
+		ChatLabel.setSize(400, 70);
+		ChatLabel.setLocation(1000, 0);
 		
 		//Quit Button
 		QuitGameButton = new JButton("Quit Game");
