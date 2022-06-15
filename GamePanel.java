@@ -123,15 +123,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			LavaMap.close();
 		}catch(IOException e){
 			System.out.println("Unable to close file");
-		}
-			
-		//P1
-		g.drawImage(P1img, intP1X, intP1Y, null);
-		// movement
-		intP1Y = intP1Y + intP1DefY;
-		intP1X = intP1X + intP1DefX;
-			
-			
+		}	
 		//Bullet
 			
 		//mouseX/Y = current x/y location of the mouse
@@ -153,6 +145,12 @@ public class GamePanel extends JPanel implements ActionListener{
 			bulletX = intP1Y;
 			bulletY = intP1X;
 		}
+		
+		//P1
+		g.drawImage(P1img, intP1X, intP1Y, null);
+		// movement
+		intP1Y = intP1Y + intP1DefY;
+		intP1X = intP1X + intP1DefX;
 	}
 	
 	//Constructor
