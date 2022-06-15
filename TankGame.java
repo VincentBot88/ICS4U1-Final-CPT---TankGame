@@ -194,9 +194,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		
 		}
 		if(evt.getSource() == ssm){
-			System.out.println("Hello");
 			String strIn = ssm.readText();
-			System.out.println("tank position"+strIn);
+			System.out.println("tank position "+strIn);
 			chatToReceive.append(ssm.readText() + "\n");
 			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
 			/*thePanel.removeAll();
@@ -208,7 +207,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}
 		if(evt.getSource() == chatToSend){
 			if(ssm != null){
-				ssm.sendText(chatToSend.getText());
+				ssm.sendText("P1: " + chatToSend.getText());
 			}
 			theFrame.requestFocus();
 		}
@@ -228,19 +227,22 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyChar() == 'w'){
 			theGamePanel.intP1DefY = -2;
+			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 's'){
 			theGamePanel.intP1DefY = +2;
+			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = -2;
+			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = +2;
+			ssm.sendText("P1: Moving");
 		}
 
 		System.out.println("sending message over network"+ssm);
-		ssm.sendText("P1: Moving");
 	}
 	public void keyTyped(KeyEvent evt){
-		ssm.sendText("Key Typed");
+		//ssm.sendText("Key Typed");
 		
 	}
 	
