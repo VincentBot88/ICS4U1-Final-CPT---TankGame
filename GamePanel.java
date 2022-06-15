@@ -117,6 +117,8 @@ public class GamePanel extends JPanel implements ActionListener{
 				}
 			}
 		}
+		g.setColor(Color.BLACK);
+		g.fillRect(960, 0, 320, 720);
 		try{
 			GrasslandMap.close();
 			DesertMap.close();
