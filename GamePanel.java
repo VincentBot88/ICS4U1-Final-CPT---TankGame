@@ -16,8 +16,8 @@ public class GamePanel extends JPanel implements ActionListener{
 	int intP1DefY = 0;
 	int mouseX;
 	int mouseY;
-	double bulletX = intP1X;
-	double bulletY = intP1Y;
+	double bulletX = intP1X + 25;
+	double bulletY = intP1Y + 20;
 	boolean fire = false;
 	double bulletVelocity = 0; //However fast you want your bullet to travel
 	BufferedImage P1img = null;
@@ -144,12 +144,11 @@ public class GamePanel extends JPanel implements ActionListener{
 		bulletX = bulletX + xVelocity;
 		bulletY = bulletY + yVelocity;
 		if(bulletVelocity == 0){
-			bulletX = intP1Y;
-			bulletY = intP1X;
+			bulletX = intP1Y + 25;
+			bulletY = intP1X + 20;
 		}
 
 		if(bulletX > 720 || bulletY > 1280 || bulletX < 0 || bulletY < 0){
-			//System.out.println(bulletX);
 			bulletVelocity = 0;
 			bulletX = intP1Y;
 			bulletY = intP1X;
