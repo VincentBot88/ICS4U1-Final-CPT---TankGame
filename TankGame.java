@@ -178,6 +178,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.add(theScrollBar);
 				theGamePanel.add(chatToSend);
 				theGamePanel.add(ChatLabel);
+				ChatLabel.setForeground(Color.RED);
 			}
 		}
 		if(evt.getSource() == StartButton){
@@ -189,6 +190,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.add(theScrollBar);
 			theGamePanel.add(chatToSend);
 			theGamePanel.add(ChatLabel);
+			ChatLabel.setForeground(Color.RED);
+			
 		}
 		if(evt.getSource() == MapSelectBox){
 		
