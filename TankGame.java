@@ -207,7 +207,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}
 		if(evt.getSource() == chatToSend){
 			if(ssm != null){
-				ssm.sendText("P1: " + chatToSend.getText());
+				chatToReceive.append("You: " + chatToSend.getText() + "\n");
+				ssm.sendText("Player: " + chatToSend.getText());
 			}
 			theFrame.requestFocus();
 		}
