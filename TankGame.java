@@ -46,7 +46,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	
 	int intJoin = 0;
 	
-	
 	//Methods
 	public void itemStateChanged(ItemEvent e){
 		if(MapSelectBox.getSelectedItem().equals("Grassland"))
@@ -55,9 +54,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			System.out.println("Hi");
 		if(MapSelectBox.getSelectedItem().equals("Lava"))
 			System.out.println("Hi");
-
 	}
-	
 	public void mouseMoved(MouseEvent evt){
 
 	}
