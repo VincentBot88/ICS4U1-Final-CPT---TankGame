@@ -213,22 +213,22 @@ public class GamePanel extends JPanel implements ActionListener{
 			bullet4Y = intP4X + 20;
 		}
 
-		if(bullet1X > 720 || bullet1Y > 1280 || bullet1X < 0 || bullet1Y < 0){
+		if(bullet1X > 720 || bullet1Y > 1000 || bullet1X < 0 || bullet1Y < 0){
 			bullet1Velocity = 0;
 			bullet1X = intP1Y;
 			bullet1Y = intP1X;
 		}
-		if(bullet2X > 720 || bullet2Y > 1280 || bullet2X < 0 || bullet2Y < 0){
+		if(bullet2X > 720 || bullet2Y > 1000 || bullet2X < 0 || bullet2Y < 0){
 			bullet2Velocity = 0;
 			bullet2X = intP2Y;
 			bullet2Y = intP2X;
 		}
-		if(bullet3X > 720 || bullet3Y > 1280 || bullet3X < 0 || bullet3Y < 0){
+		if(bullet3X > 720 || bullet3Y > 1000 || bullet3X < 0 || bullet3Y < 0){
 			bullet3Velocity = 0;
 			bullet3X = intP3Y;
 			bullet3Y = intP3X;
 		}
-		if(bullet4X > 720 || bullet4Y > 1280 || bullet4X < 0 || bullet4Y < 0){
+		if(bullet4X > 720 || bullet4Y > 1000 || bullet4X < 0 || bullet4Y < 0){
 			bullet4Velocity = 0;
 			bullet4X = intP4Y;
 			bullet4Y = intP4X;
