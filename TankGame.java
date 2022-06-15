@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.net.*;
 import javax.swing.JComponent.*;
 
-public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener{
+
+public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener, ItemListener{
 	//Properties
 	SuperSocketMaster ssm;
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
@@ -47,6 +48,16 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	
 	
 	//Methods
+	public void itemStateChanged(ItemEvent e){
+		if(MapSelectBox.getSelectedItem().equals("Grassland"))
+			
+		if(MapSelectBox.getSelectedItem().equals("Desert"))
+			System.out.println("Hi");
+		if(MapSelectBox.getSelectedItem().equals("Lava"))
+			System.out.println("Hi");
+
+	}
+	
 	public void mouseMoved(MouseEvent evt){
 
 	}
@@ -252,6 +263,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		MapSelectBox.setSize(150, 50);
 		MapSelectBox.setLocation(840, 330);
 		MapSelectBox.addActionListener(this);
+		MapSelectBox.addItemListener(this);
 		
 		//Map Label
 		MapLabel = new JLabel("Map: ");
