@@ -167,7 +167,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theFrame.pack();
 				theFrame.requestFocus();
 				theGamePanel.add(theScrollBar);
-				//theGamePanel.add(chatToSend);
+				theGamePanel.add(chatToSend);
 			}
 		}
 		if(evt.getSource() == StartButton){
@@ -177,16 +177,23 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theFrame.pack();
 			theFrame.requestFocus();	
 			theGamePanel.add(theScrollBar);
-			//theGamePanel.add(chatToSend);
+			theGamePanel.add(chatToSend);
 		}
 		if(evt.getSource() == MapSelectBox){
 		
 		}
 		if(evt.getSource() == ssm){
+			System.out.println("Hello");
 			String strIn = ssm.readText();
 			System.out.println("tank position"+strIn);
 			chatToReceive.append(ssm.readText() + "\n");
 			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
+			/*thePanel.removeAll();
+			theFrame.setContentPane(theGamePanel);
+			theFrame.pack();
+			theFrame.requestFocus();
+			theGamePanel.add(theScrollBar);
+			//theGamePanel.add(chatToSend);*/
 		}
 		if(evt.getSource() == chatToSend){
 			if(ssm != null){
@@ -221,6 +228,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}
 		System.out.println("sending message over network"+ssm);
 		ssm.sendText("P1: Moving");
+		theGamePanel.intP1DefY = -2;
 		
 	}
 	public void keyTyped(KeyEvent evt){
