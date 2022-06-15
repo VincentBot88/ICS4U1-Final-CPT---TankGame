@@ -14,13 +14,43 @@ public class GamePanel extends JPanel implements ActionListener{
 	int intP1X = 100;
 	int intP1DefX = 0;
 	int intP1DefY = 0;
+	
+	int intP2Y = 500;
+	int intP2X = 600;
+	int intP2DefX = 0;
+	int intP2DefY = 0;
+	
+	int intP3Y = 300;
+	int intP3X = 400;
+	int intP3DefX = 0;
+	int intP3DefY = 0;
+	
+	int intP4Y = 200;
+	int intP4X = 300;
+	int intP4DefX = 0;
+	int intP4DefY = 0;
+	
 	int mouseX;
 	int mouseY;
-	String selectedMap;
-	double bulletX = intP1X + 25;
-	double bulletY = intP1Y + 20;
+
+	double bullet1X = intP1X + 25;
+	double bullet1Y = intP1Y + 20;
+	
+	double bullet2X = intP2X + 25;
+	double bullet2Y = intP2Y + 20;
+	
+	double bullet3X = intP3X + 25;
+	double bullet3Y = intP3Y + 20;
+	
+	double bullet4X = intP4X + 25;
+	double bullet4Y = intP4Y + 20;
+	
 	boolean fire = false;
-	double bulletVelocity = 0; //However fast you want your bullet to travel
+	double bullet1Velocity = 0;
+	double bullet2Velocity = 0;
+	double bullet3Velocity = 0;
+	double bullet4Velocity = 0;
+	
 	BufferedImage P1img = null;
 	BufferedImage P2img = null;
 	BufferedImage P3img = null; 
@@ -30,6 +60,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	BufferedImage sand = null;
 	BufferedImage lava = null;
 	SuperSocketMaster ssm;
+	String selectedMap;
 	
 	interface gameInterface{
 		void paintComponent();
@@ -130,29 +161,97 @@ public class GamePanel extends JPanel implements ActionListener{
 			
 		//mouseX/Y = current x/y location of the mouse
 		//originX/Y = x/y location of where the bullet is being shot from
-		double angle =(Math.atan2(mouseX - intP1X, mouseY - intP1Y));
-		double xVelocity = ((bulletVelocity) * Math.cos(angle));
-		double yVelocity = ((bulletVelocity) * Math.sin(angle));
+		double angle1 =(Math.atan2(mouseX - intP1X, mouseY - intP1Y));
+		double angle2 =(Math.atan2(mouseX - intP2X, mouseY - intP2Y));
+		double angle3 =(Math.atan2(mouseX - intP3X, mouseY - intP3Y));
+		double angle4 =(Math.atan2(mouseX - intP4X, mouseY - intP4Y));
+		
+		double x1Velocity = ((bullet1Velocity) * Math.cos(angle1));
+		double y1Velocity = ((bullet1Velocity) * Math.sin(angle1));
+		
+		double x2Velocity = ((bullet2Velocity) * Math.cos(angle2));
+		double y2Velocity = ((bullet2Velocity) * Math.sin(angle2));
+		
+		double x3Velocity = ((bullet3Velocity) * Math.cos(angle3));
+		double y3Velocity = ((bullet3Velocity) * Math.sin(angle3));
+		
+		double x4Velocity = ((bullet4Velocity) * Math.cos(angle4));
+		double y4Velocity = ((bullet4Velocity) * Math.sin(angle4));
+		
 		g.setColor(Color.BLACK);
-		g.fillRect((int)bulletY, (int)bulletX, 10, 10);
-		bulletX = bulletX + xVelocity;
-		bulletY = bulletY + yVelocity;
-		if(bulletVelocity == 0){
-			bulletX = intP1Y + 25;
-			bulletY = intP1X + 20;
+		g.fillRect((int)bullet1Y, (int)bullet1X, 10, 10);
+		g.fillRect((int)bullet2Y, (int)bullet2X, 10, 10);
+		g.fillRect((int)bullet3Y, (int)bullet3X, 10, 10);
+		g.fillRect((int)bullet4Y, (int)bullet4X, 10, 10);
+		
+		bullet1X = bullet1X + x1Velocity;
+		bullet1Y = bullet1Y + y1Velocity;
+		
+		bullet2X = bullet2X + x2Velocity;
+		bullet2Y = bullet2Y + y2Velocity;
+		
+		bullet3X = bullet3X + x3Velocity;
+		bullet3Y = bullet3Y + y3Velocity;
+		
+		bullet4X = bullet4X + x4Velocity;
+		bullet4Y = bullet4Y + y4Velocity;
+		
+		if(bullet1Velocity == 0){
+			bullet1X = intP1Y + 25;
+			bullet1Y = intP1X + 20;
+		}
+		if(bullet2Velocity == 0){	
+			bullet2X = intP2Y + 25;
+			bullet2Y = intP2X + 20;
+		}
+		if(bullet3Velocity == 0){
+			bullet3X = intP3Y + 25;
+			bullet3Y = intP3X + 20;
+		}
+		if(bullet4Velocity == 0){
+			bullet4X = intP4Y + 25;
+			bullet4Y = intP4X + 20;
 		}
 
-		if(bulletX > 720 || bulletY > 1280 || bulletX < 0 || bulletY < 0){
-			bulletVelocity = 0;
-			bulletX = intP1Y;
-			bulletY = intP1X;
+		if(bullet1X > 720 || bullet1Y > 1280 || bullet1X < 0 || bullet1Y < 0){
+			bullet1Velocity = 0;
+			bullet1X = intP1Y;
+			bullet1Y = intP1X;
+		}
+		if(bullet2X > 720 || bullet2Y > 1280 || bullet2X < 0 || bullet2Y < 0){
+			bullet2Velocity = 0;
+			bullet2X = intP2Y;
+			bullet2Y = intP2X;
+		}
+		if(bullet3X > 720 || bullet3Y > 1280 || bullet3X < 0 || bullet3Y < 0){
+			bullet3Velocity = 0;
+			bullet3X = intP3Y;
+			bullet3Y = intP3X;
+		}
+		if(bullet4X > 720 || bullet4Y > 1280 || bullet4X < 0 || bullet4Y < 0){
+			bullet4Velocity = 0;
+			bullet4X = intP4Y;
+			bullet4Y = intP4X;
 		}
 		
 		//P1
 		g.drawImage(P1img, intP1X, intP1Y, null);
+		g.drawImage(P2img, intP2X, intP2Y, null);
+		g.drawImage(P3img, intP3X, intP3Y, null);
+		g.drawImage(P4img, intP4X, intP4Y, null);
+		
 		// movement
 		intP1Y = intP1Y + intP1DefY;
 		intP1X = intP1X + intP1DefX;
+		
+		intP2Y = intP2Y + intP2DefY;
+		intP2X = intP2X + intP2DefX;
+		
+		intP3Y = intP3Y + intP3DefY;
+		intP3X = intP3X + intP3DefX;
+		
+		intP4Y = intP4Y + intP4DefY;
+		intP4X = intP4X + intP4DefX;
 	}
 	
 	

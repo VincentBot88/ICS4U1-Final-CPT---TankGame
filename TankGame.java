@@ -61,10 +61,25 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 
 	}
 	public void mousePressed(MouseEvent evt) {
-		if(evt.getButton()==1 && theGamePanel.bulletVelocity == 0){
+		if(evt.getButton()==1 && theGamePanel.bullet1Velocity == 0){
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
-			theGamePanel.bulletVelocity = 10;
+			theGamePanel.bullet1Velocity = 10;
+		}
+		if(evt.getButton()==1 && theGamePanel.bullet2Velocity == 0){
+			theGamePanel.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+			theGamePanel.bullet2Velocity = 10;
+		}
+		if(evt.getButton()==1 && theGamePanel.bullet3Velocity == 0){
+			theGamePanel.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+			theGamePanel.bullet3Velocity = 10;
+		}
+		if(evt.getButton()==1 && theGamePanel.bullet4Velocity == 0){
+			theGamePanel.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+			theGamePanel.bullet4Velocity = 10;
 		}
 		ssm.sendText("P1: Shot");
 	}
@@ -245,26 +260,50 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public void keyReleased(KeyEvent evt){
 		if(evt.getKeyChar() == 'w'){
 			theGamePanel.intP1DefY = 0;
+			theGamePanel.intP2DefY = 0;
+			theGamePanel.intP3DefY = 0;
+			theGamePanel.intP4DefY = 0;
 		}else if(evt.getKeyChar() == 's'){
 			theGamePanel.intP1DefY = 0;
+			theGamePanel.intP2DefY = 0;
+			theGamePanel.intP3DefY = 0;
+			theGamePanel.intP4DefY = 0;
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = 0;
+			theGamePanel.intP2DefX = 0;
+			theGamePanel.intP3DefX = 0;
+			theGamePanel.intP4DefX = 0;
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = 0;
+			theGamePanel.intP2DefX = 0;
+			theGamePanel.intP3DefX = 0;
+			theGamePanel.intP4DefX = 0;
 		}
 	}
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyChar() == 'w'){
 			theGamePanel.intP1DefY = -2;
+			theGamePanel.intP2DefY = -2;
+			theGamePanel.intP3DefY = -2;
+			theGamePanel.intP4DefY = -2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 's'){
 			theGamePanel.intP1DefY = +2;
+			theGamePanel.intP2DefY = +2;
+			theGamePanel.intP3DefY = +2;
+			theGamePanel.intP4DefY = +2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = -2;
+			theGamePanel.intP2DefX = -2;
+			theGamePanel.intP3DefX = -2;
+			theGamePanel.intP4DefX = -2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = +2;
+			theGamePanel.intP2DefX = +2;
+			theGamePanel.intP3DefX = +2;
+			theGamePanel.intP4DefX = +2;
 			ssm.sendText("P1: Moving");
 		}
 
