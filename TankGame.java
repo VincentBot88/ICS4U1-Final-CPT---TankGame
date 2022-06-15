@@ -119,7 +119,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(IPLabel);
 			thePanel.add(HostBackButton);
 			thePanel.add(HostButton);
-			thePanel.add(StartButton);
 			thePanel.add(MapSelectBox);
 			thePanel.add(MapLabel);
 			MapLabel.setForeground(Color.RED);
@@ -158,6 +157,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			HostButton.setEnabled(false);
 			IPTextField.setEnabled(false);
 			PortTextField.setEnabled(false);
+			thePanel.add(StartButton);
 			ssm = new SuperSocketMaster(Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
 			
