@@ -194,7 +194,13 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			
 		}
 		if(evt.getSource() == MapSelectBox){
-		
+			if(MapSelectBox.getSelectedItem() == "Grassland"){
+				
+			} else if (MapSelectBox.getSelectedItem() == "Desert"){
+				
+			} else if (MapSelectBox.getSelectedItem() == "Lava"){
+				
+			}
 		}
 		if(evt.getSource() == ssm){
 			String strIn = ssm.readText();
