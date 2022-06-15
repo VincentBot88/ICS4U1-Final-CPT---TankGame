@@ -120,7 +120,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(IPLabel);
 			thePanel.add(HostBackButton);
 			thePanel.add(HostButton);
-			thePanel.add(StartButton);
 			thePanel.add(MapSelectBox);
 			thePanel.add(MapLabel);
 			MapLabel.setForeground(Color.RED);
@@ -159,6 +158,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			HostButton.setEnabled(false);
 			IPTextField.setEnabled(false);
 			PortTextField.setEnabled(false);
+			thePanel.add(StartButton);
 			ssm = new SuperSocketMaster(Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
 			
@@ -179,7 +179,12 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.add(theScrollBar);
 				theGamePanel.add(chatToSend);
 				theGamePanel.add(ChatLabel);
+<<<<<<< HEAD
 			//}
+=======
+				ChatLabel.setForeground(Color.RED);
+			}
+>>>>>>> 76867fe334fd805aa4df291afe7450f42a177a8a
 		}
 		if(evt.getSource() == StartButton){
 			//Clears screen then start the gameplay
@@ -190,9 +195,17 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.add(theScrollBar);
 			theGamePanel.add(chatToSend);
 			theGamePanel.add(ChatLabel);
+			ChatLabel.setForeground(Color.RED);
+			
 		}
 		if(evt.getSource() == MapSelectBox){
-		
+			if(MapSelectBox.getSelectedItem() == "Grassland"){
+				
+			} else if (MapSelectBox.getSelectedItem() == "Desert"){
+				
+			} else if (MapSelectBox.getSelectedItem() == "Lava"){
+				
+			}
 		}
 		if(evt.getSource() == ssm){
 			String strIn = ssm.readText();
@@ -210,7 +223,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			if(ssm != null){
 				chatToReceive.append("You: " + chatToSend.getText() + "\n");
 				ssm.sendText("Player: " + chatToSend.getText());
+				
 			}
+			chatToSend.setText("");
 			theFrame.requestFocus();
 		}
 	}
