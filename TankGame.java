@@ -52,15 +52,16 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	int intY = theGamePanel.intP1DefY;
 	
 	//Methods
-	
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
 			theGamePanel.repaint();
 		}
+		//Quit Game Button
 		if(evt.getSource() == QuitGameButton){
 			System.exit(0);
 		}
+		//Join Game Button
 		if(evt.getSource() == JoinGameButton){
 			thePanel.remove(HostGameButton);
 			thePanel.remove(JoinGameButton);
@@ -78,6 +79,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(JoinBackButton);
 			thePanel.add(JoinButton);
 		}
+		//Host Game Button
 		if(evt.getSource() == HostGameButton){
 			thePanel.remove(JoinGameButton);
 			thePanel.remove(HostGameButton);
@@ -99,6 +101,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			MapLabel.setForeground(Color.RED);
 			MapLabel.setFont(new Font("Serif", Font.BOLD, 30));
 		}
+		//Back button after pressing Host Game
 		if(evt.getSource() == HostBackButton){
 			thePanel.remove(HostLabel);
 			thePanel.remove(IPTextField);
@@ -114,6 +117,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(HostGameButton);
 								
 		}
+		//Back button after pressing Join Game
 		if(evt.getSource() == JoinBackButton){
 			thePanel.remove(JoinLabel);
 			thePanel.remove(IPTextField);
@@ -128,7 +132,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		} 
 		if(evt.getSource() == HostButton){
 			//Opens server and allows players to join
-			//When a player joins, print something just above the lines saying "Players: P1, P2 ...."
 			HostButton.setEnabled(false);
 			IPTextField.setEnabled(false);
 			PortTextField.setEnabled(false);
@@ -139,7 +142,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}
 		if(evt.getSource() == JoinButton){
 			//Joins the server
-			//When the player joins, print something just above the lines saying "Players in lobby: P1, P2 ...."
 			JoinButton.setEnabled(false); 
 			IPTextField.setEnabled(false);
 			PortTextField.setEnabled(false);
@@ -182,7 +184,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		if(evt.getSource() == ssm){
 			//ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 			String strIn = ssm.readText();
-			//System.out.println("tank position "+strIn);
+			//Syncing map over the network
 			String strInSplit[] = strIn.split(",");
 			if(strInSplit[0].equals ("Client")){
 				System.out.println("Client Connected");
@@ -199,7 +201,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.repaint();
 				System.out.println("Received from server");
 			}
-			//System.out.println("tank position "+strIn);
 			if(!strInSplit[0].equals("Moving") && !strInSplit[0].equals("Shot")){
 				chatToReceive.append(ssm.readText() + "\n");
 				chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
@@ -223,6 +224,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			//theGamePanel.add(theScrollBar);
 			//theGamePanel.add(chatToSend);
 		}
+		//Chat networking
 		if(evt.getSource() == chatToSend){
 			if(ssm != null){
 				chatToReceive.append("You: " + chatToSend.getText() + "\n");
@@ -235,6 +237,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 	
 	public void keyReleased(KeyEvent evt){
+		//Player Movement
 		if(evt.getKeyChar() == 'w'){
 			theGamePanel.intP1DefY = 0;
 			theGamePanel.intP2DefY = 0;
@@ -272,6 +275,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}*/
 	}
 	public void keyPressed(KeyEvent evt){
+		//Player Movement
 		if(evt.getKeyChar() == 'w'){
 			theGamePanel.intP1DefY = -2;
 			//theGamePanel.intP2DefY = -2;
@@ -318,10 +322,12 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	
 	}
 	public void mouseMoved(MouseEvent evt){
+		//Mouse aim
 		theGamePanel.cursorX = evt.getX();
         theGamePanel.cursorY = evt.getY();
 	}
 	public void mousePressed(MouseEvent evt) {
+		//Bullet/Mouse aim
 		if(evt.getButton()==1 && theGamePanel.bullet1Velocity == 0){
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
@@ -487,12 +493,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				}
 			}
 		});
-
 	}
 
 	//main method
 	public static void main(String[] args){
 		new TankGame();
 	}
-
 }

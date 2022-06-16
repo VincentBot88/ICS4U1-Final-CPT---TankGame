@@ -12,8 +12,6 @@ public class MenuPanel extends JPanel{
 	Color menuDecoration = new Color(31, 79, 21);
 	Color menuDecoration2 = new Color(104, 1, 1);
 	
-	
-		
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
