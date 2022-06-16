@@ -145,12 +145,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			PortTextField.setEnabled(false);
 			ssm = new SuperSocketMaster(IPTextField.getText(), Integer.parseInt(PortTextField.getText()), this);
 			boolean tankConnect = ssm.connect();
-			
-			//String returnSelectedMapFromServer = ssm.readText();;
-			//if(ssm.readText() == "Lava"){
-			//	returnSelectedMapFromServer = "Lava"; 
-			//	theGamePanel.selectedMap = returnSelectedMapFromServer;
-			//}
+			ssm.sendText("Client,Player1");
 			
 			//if(tankConnect){
 				thePanel.removeAll();
@@ -186,10 +181,27 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}
 		if(evt.getSource() == ssm){
 			String strIn = ssm.readText();
+<<<<<<< HEAD
 			//System.out.println("tank position "+strIn);
 			String strInSplit[] = strIn.split(",");
+=======
+			String strInSplit[] = strIn.split(",");
+			if(strInSplit[0].equals ("Client")){
+				System.out.println("Client Connected");
+				ssm.sendText("Map,Lava");
+			}
+			if(strInSplit[0].equals ("Map")){
+				if(strInSplit[1].equals("Lava")){
+					theGamePanel.selectedMap = "Lava";
+				}
+				theGamePanel.repaint();
+				System.out.println("Received from server");
+			}
+			System.out.println("tank position "+strIn);
+>>>>>>> 0698a0d01b220bdef2688a7db19c1af7f38c867d
 			chatToReceive.append(ssm.readText() + "\n");
 			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
+			//if(
 			//theGamePanel.intP1X = 40;
 			//theGamePanel.intP1Y = 100;
 			if(strInSplit[0].equals("Moving")){
