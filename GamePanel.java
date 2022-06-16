@@ -12,8 +12,8 @@ public class GamePanel extends JPanel implements ActionListener{
 	//Properties
 	int intP1Y = 100;
 	int intP1X = 100;
-	int intP1DefX = 0;
-	int intP1DefY = 0;
+	int intP1DefX = 2;
+	int intP1DefY = 2;
 	
 	int intP2Y = 500;
 	int intP2X = 600;

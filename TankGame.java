@@ -48,8 +48,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	int intW = 0;
 	String strLineSplit[];
 	
-	int intX;
-	int intY;
+	int intX = theGamePanel.intP1DefX;
+	int intY = theGamePanel.intP1DefY;
 	
 	//Methods
 	public void itemStateChanged(ItemEvent e){
