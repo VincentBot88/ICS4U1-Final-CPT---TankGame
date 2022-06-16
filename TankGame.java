@@ -48,6 +48,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	int intW = 0;
 	String strLineSplit[];
 	int intHold;
+	int intRotation;
 	
 	int intX = theGamePanel.intP1DefX;
 	int intY = theGamePanel.intP1DefY;
@@ -202,7 +203,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.repaint();
 				System.out.println("Received from server");
 			}
-			if(!strInSplit[0].equals("Moving") && !strInSplit[0].equals("Shot")){
+			if(!strInSplit[0].equals("Moving") && !strInSplit[0].equals("Shot") && !strInSplit[0].equals("Rotation")){
 				chatToReceive.append(ssm.readText() + "\n");
 				chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
 			}
@@ -216,6 +217,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			if(strInSplit[0].equals("Shot")){
 				theGamePanel.bullet1X = Double.parseDouble(strInSplit[1]);
 				theGamePanel.bullet1Y = Double.parseDouble(strInSplit[2]);
+			}
+			if(strInSplit[0].equals("Rotation")){
+				theGamePanel.cursorX = Integer.parseInt(strInSplit[1]);
+				theGamePanel.cursorY = Integer.parseInt(strInSplit[2]);
 			}
 			//theGamePanel.bullet1X =
 			//thePanel.removeAll();
@@ -337,6 +342,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		//Mouse aim
 		theGamePanel.cursorX = evt.getX();
         theGamePanel.cursorY = evt.getY();
+        if(ssm != null){
+			ssm.sendText("Rotation,"+theGamePanel.cursorX+","+theGamePanel.cursorY);
+		}
 	}
 	public void mousePressed(MouseEvent evt) {
 		//Bullet/Mouse aim
