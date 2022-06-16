@@ -7,6 +7,12 @@ import java.awt.image.*;
 import javax.imageio.*;
 import java.util.ArrayList;
 import java.net.*;
+import javax.imageio.ImageIO;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.awt.Graphics2D;
 
 public class GamePanel extends JPanel implements ActionListener{
 	//Properties
@@ -32,6 +38,9 @@ public class GamePanel extends JPanel implements ActionListener{
 	
 	int mouseX;
 	int mouseY;
+	
+	int cursorX;
+	int cursorY;
 
 	double bullet1X = intP1X + 25;
 	double bullet1Y = intP1Y + 20;
@@ -112,19 +121,23 @@ public class GamePanel extends JPanel implements ActionListener{
 					}else if(strData[row][col].equals("w")){
 						g.drawImage(wall, col * 40, row * 40, null);
 						Rectangle wallRect = new Rectangle(col * 40, row * 40, 40, 40);
-						Rectangle playerRect = new Rectangle(intP1X, intP1Y, 55, 49);
-							if(playerRect.intersects(wallRect) && intP1DefX == -2){
+						Rectangle player1Rect = new Rectangle(intP1X, intP1Y, 55, 49);
+						Rectangle bullet1Rect = new Rectangle((int)bullet1X, (int)bullet1Y, 10, 10);
+							if(player1Rect.intersects(wallRect) && intP1DefX == -2){
 								intP1DefX = 2;
 								intP1X = intP1X + 4;
-							}else if(playerRect.intersects(wallRect) && intP1DefX == 2){
+							}else if(player1Rect.intersects(wallRect) && intP1DefX == 2){
 								intP1DefX = -2;
 								intP1X = intP1X - 4;
-							}else if(playerRect.intersects(wallRect) && intP1DefY == -2){
+							}else if(player1Rect.intersects(wallRect) && intP1DefY == -2){
 								intP1DefY = 2;
 								intP1Y = intP1Y + 4;
-							}else if(playerRect.intersects(wallRect) && intP1DefY == 2){
+							}else if(player1Rect.intersects(wallRect) && intP1DefY == 2){
 								intP1DefY = -2;
 								intP1Y = intP1Y - 4;
+							}if (bullet1Rect.intersects(wallRect)){
+								double bullet1X = intP1X + 25;
+								double bullet1Y = intP1Y + 20;
 							}
 					}
 				}
@@ -251,9 +264,21 @@ public class GamePanel extends JPanel implements ActionListener{
 			bullet4X = intP4Y;
 			bullet4Y = intP4X;
 		}
-		
-		//P1
-		g.drawImage(P1img, intP1X, intP1Y, null);
+		//Rotation
+        float xDistance = cursorX - intP1X;
+        float yDistance = cursorY - intP1Y;
+        double rotationRequired = (Math.toDegrees(Math.atan2(yDistance, xDistance))/50);
+
+        // Rotation information
+        double locationX = P1img.getWidth() / 2;
+        double locationY = P1img.getHeight() / 2;
+        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+
+        // Drawing the rotated image at the required drawing locations
+        g.drawImage(op.filter(P1img, null), intP1X, intP1Y, null);
+        
+		//Players
 		g.drawImage(P2img, intP2X, intP2Y, null);
 		g.drawImage(P3img, intP3X, intP3Y, null);
 		g.drawImage(P4img, intP4X, intP4Y, null);
