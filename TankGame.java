@@ -283,27 +283,27 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyChar() == 'w'){
 			theGamePanel.intP1DefY = -2;
-			theGamePanel.intP2DefY = -2;
-			theGamePanel.intP3DefY = -2;
-			theGamePanel.intP4DefY = -2;
+			//theGamePanel.intP2DefY = -2;
+			//theGamePanel.intP3DefY = -2;
+			//theGamePanel.intP4DefY = -2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 's'){
 			theGamePanel.intP1DefY = +2;
-			theGamePanel.intP2DefY = +2;
-			theGamePanel.intP3DefY = +2;
-			theGamePanel.intP4DefY = +2;
+			//theGamePanel.intP2DefY = +2;
+			//theGamePanel.intP3DefY = +2;
+			//theGamePanel.intP4DefY = +2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = -2;
-			theGamePanel.intP2DefX = -2;
-			theGamePanel.intP3DefX = -2;
-			theGamePanel.intP4DefX = -2;
+			//theGamePanel.intP2DefX = -2;
+			//theGamePanel.intP3DefX = -2;
+			//theGamePanel.intP4DefX = -2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = +2;
-			theGamePanel.intP2DefX = +2;
-			theGamePanel.intP3DefX = +2;
-			theGamePanel.intP4DefX = +2;
+			//theGamePanel.intP2DefX = +2;
+			//theGamePanel.intP3DefX = +2;
+			//theGamePanel.intP4DefX = +2;
 			ssm.sendText("P1: Moving");
 		}
 

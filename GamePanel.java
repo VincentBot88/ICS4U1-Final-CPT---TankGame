@@ -51,6 +51,9 @@ public class GamePanel extends JPanel implements ActionListener{
 	double bullet3Velocity = 0;
 	double bullet4Velocity = 0;
 	
+	int wallX;
+	int wallY;
+	
 	BufferedImage P1img = null;
 	BufferedImage P2img = null;
 	BufferedImage P3img = null; 
@@ -108,6 +111,21 @@ public class GamePanel extends JPanel implements ActionListener{
 						g.drawImage(ground, col * 40, row * 40, null);
 					}else if(strData[row][col].equals("w")){
 						g.drawImage(wall, col * 40, row * 40, null);
+						Rectangle wallRect = new Rectangle(col * 40, row * 40, 40, 40);
+						Rectangle playerRect = new Rectangle(intP1X, intP1Y, 55, 49);
+							if(playerRect.intersects(wallRect) && intP1DefX == -2){
+								intP1DefX = 2;
+								intP1X = intP1X + 4;
+							}else if(playerRect.intersects(wallRect) && intP1DefX == 2){
+								intP1DefX = -2;
+								intP1X = intP1X - 4;
+							}else if(playerRect.intersects(wallRect) && intP1DefY == -2){
+								intP1DefY = 2;
+								intP1Y = intP1Y + 4;
+							}else if(playerRect.intersects(wallRect) && intP1DefY == 2){
+								intP1DefY = -2;
+								intP1Y = intP1Y - 4;
+							}
 					}
 				}
 			}
@@ -252,6 +270,9 @@ public class GamePanel extends JPanel implements ActionListener{
 		
 		intP4Y = intP4Y + intP4DefY;
 		intP4X = intP4X + intP4DefX;
+		
+		
+		
 	}
 	
 	
