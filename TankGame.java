@@ -312,7 +312,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		//System.out.println("sending message over network"+ssm);
 	}
 	public void keyTyped(KeyEvent evt){
-		System.out.println("Key Typed");
 		
 	}
 	public void itemStateChanged(ItemEvent e){
