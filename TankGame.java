@@ -17,7 +17,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
 	MenuPanel thePanel = new MenuPanel();
 	GamePanel theGamePanel = new GamePanel();
-	Timer theTimer = new Timer(1000/60, this);
+	Timer theTimer = new Timer(1000/30, this);
 	public JLabel resultLabel;
 	JButton QuitGameButton = new JButton();
 	JButton JoinGameButton = new JButton();
@@ -180,7 +180,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ChatLabel.setForeground(Color.RED);
 		}
 		if(evt.getSource() == ssm){
-			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
+			//ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 			String strIn = ssm.readText();
 			//System.out.println("tank position "+strIn);
 			String strInSplit[] = strIn.split(",");
@@ -241,24 +241,28 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.intP3DefY = 0;
 			theGamePanel.intP4DefY = 0;
 			intY = 0;
+			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 		}else if(evt.getKeyChar() == 's'){
 			theGamePanel.intP1DefY = 0;
 			theGamePanel.intP2DefY = 0;
 			theGamePanel.intP3DefY = 0;
 			theGamePanel.intP4DefY = 0;
 			intY = 0;
+			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = 0;
 			theGamePanel.intP2DefX = 0;
 			theGamePanel.intP3DefX = 0;
 			theGamePanel.intP4DefX = 0;
 			intX = 0;
+			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = 0;
 			theGamePanel.intP2DefX = 0;
 			theGamePanel.intP3DefX = 0;
 			theGamePanel.intP4DefX = 0;
 			intX = 0;
+			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 		}
 		/*if(evt.getSource() == ssm){
 			theGamePanel.intP1X = theGamePanel.intP1X + theGamePanel.intP1DefX;
@@ -282,6 +286,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			//theGamePanel.intP4DefY = +2;
 			intY = +2;
 			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
+			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = -2;
 			//theGamePanel.intP2DefX = -2;
