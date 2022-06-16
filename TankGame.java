@@ -196,12 +196,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			boolean tankConnect = ssm.connect();
 			ssm.sendText("Client,Player1");
 			
-			//String returnSelectedMapFromServer = ssm.readText();;
-			//if(ssm.readText() == "Lava"){
-			//	returnSelectedMapFromServer = "Lava"; 
-			//	theGamePanel.selectedMap = returnSelectedMapFromServer;
-			//}
-			
 			//if(tankConnect){
 				thePanel.removeAll();
 				theFrame.setContentPane(theGamePanel);
@@ -238,7 +232,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			String strIn = ssm.readText();
 			String strInSplit[] = strIn.split(",");
 			if(strInSplit[0].equals ("Client")){
-				System.out.println("Client Connected" + strInSplit[1]);
+				System.out.println("Client Connected");
 				ssm.sendText("Map,Lava");
 			}
 			if(strInSplit[0].equals ("Map")){
@@ -246,7 +240,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 					theGamePanel.selectedMap = "Lava";
 				}
 				theGamePanel.repaint();
-				System.out.println("Received from server " + strInSplit[1] + "!!!!!");
+				System.out.println("Received from server");
 			}
 			System.out.println("tank position "+strIn);
 			chatToReceive.append(ssm.readText() + "\n");
