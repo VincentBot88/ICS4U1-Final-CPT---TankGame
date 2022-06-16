@@ -186,10 +186,14 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			String strInSplit[] = strIn.split(",");
 			if(strInSplit[0].equals ("Client")){
 				System.out.println("Client Connected");
-				ssm.sendText("Map,Lava");
+				ssm.sendText("Map," + MapSelectBox.getSelectedItem());
 			}
 			if(strInSplit[0].equals ("Map")){
-				if(strInSplit[1].equals("Lava")){
+				if(strInSplit[1].equals("Grassland")){
+					theGamePanel.selectedMap = "Grassland";
+				} else if(strInSplit[1].equals("Desert")){
+					theGamePanel.selectedMap = "Desert";
+				} else if(strInSplit[1].equals("Lava")){
 					theGamePanel.selectedMap = "Lava";
 				}
 				theGamePanel.repaint();
