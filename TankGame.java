@@ -94,14 +94,14 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 	
 	public void actionPerformed(ActionEvent evt){
-		if(evt.getSource() == ssm){
+		/*if(evt.getSource() == ssm){
 			String strIn = ssm.readText();
 			System.out.println("tank position "+strIn);
 			chatToReceive.append(ssm.readText() + "\n");
 			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
-			String strLine = ssm.readText();
-			strLineSplit = strLine.split(",");
-		}
+			theGamePanel.intP1X = theGamePanel.intP1X + intX;
+			theGamePanel.intP1Y = theGamePanel.intP1Y + intY;
+		}*/
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
 			theGamePanel.repaint();
@@ -239,8 +239,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
 			//theGamePanel.intP1X = 40;
 			//theGamePanel.intP1Y = 100;
-			theGamePanel.intP1X = theGamePanel.intP1X + intX;
-			theGamePanel.intP1Y = theGamePanel.intP1Y + intY;
+			//theGamePanel.intP1X = theGamePanel.intP1X + intX;
+			//theGamePanel.intP1Y = theGamePanel.intP1Y + intY;
 			//thePanel.removeAll();
 			//theFrame.setContentPane(theGamePanel);
 			//theFrame.pack();
