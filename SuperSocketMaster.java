@@ -47,7 +47,7 @@ public class SuperSocketMaster{
    */
   public boolean sendText(String strText){
     if(soccon != null){
-		System.out.println("ssm is sending"+strText);
+		//System.out.println("ssm is sending"+strText);
       return soccon.sendText(strText);
     }
     return false;

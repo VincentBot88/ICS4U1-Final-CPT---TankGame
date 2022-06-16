@@ -180,11 +180,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ChatLabel.setForeground(Color.RED);
 		}
 		if(evt.getSource() == ssm){
+			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 			String strIn = ssm.readText();
-<<<<<<< HEAD
 			//System.out.println("tank position "+strIn);
-			String strInSplit[] = strIn.split(",");
-=======
 			String strInSplit[] = strIn.split(",");
 			if(strInSplit[0].equals ("Client")){
 				System.out.println("Client Connected");
@@ -197,10 +195,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.repaint();
 				System.out.println("Received from server");
 			}
-			System.out.println("tank position "+strIn);
->>>>>>> 0698a0d01b220bdef2688a7db19c1af7f38c867d
-			chatToReceive.append(ssm.readText() + "\n");
-			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
+			//System.out.println("tank position "+strIn);
+			if(!strInSplit[0].equals("Moving") && !strInSplit[0].equals("Shot")){
+				chatToReceive.append(ssm.readText() + "\n");
+				chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
+			}
 			//if(
 			//theGamePanel.intP1X = 40;
 			//theGamePanel.intP1Y = 100;
@@ -301,7 +300,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.intP1Y = 100;
 		}*/
 
-		System.out.println("sending message over network"+ssm);
+		//System.out.println("sending message over network"+ssm);
 	}
 	public void keyTyped(KeyEvent evt){
 		System.out.println("Key Typed");
