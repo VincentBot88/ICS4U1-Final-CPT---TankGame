@@ -48,6 +48,9 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	int intW = 0;
 	String strLineSplit[];
 	
+	//int intX;
+	//int intY;
+	
 	//Methods
 	public void itemStateChanged(ItemEvent e){
 		if(MapSelectBox.getSelectedItem().equals("Grassland"))
@@ -239,6 +242,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			System.out.println("tank position "+strIn);
 			chatToReceive.append(ssm.readText() + "\n");
 			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
+			//theGamePanel.intP1X = 40;
+			//theGamePanel.intP1Y = 100;
+			//theGamePanel.intP1X = intX;
+			//theGamePanel.intP1Y = intY;
 			//thePanel.removeAll();
 			//theFrame.setContentPane(theGamePanel);
 			//theFrame.pack();
@@ -279,6 +286,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.intP3DefX = 0;
 			theGamePanel.intP4DefX = 0;
 		}
+		if(evt.getSource() == ssm){
+			theGamePanel.intP1X = theGamePanel.intP1X + theGamePanel.intP1DefX;
+			theGamePanel.intP1Y = theGamePanel.intP1Y + theGamePanel.intP1DefY;
+		}
 	}
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyChar() == 'w'){
@@ -305,6 +316,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			//theGamePanel.intP3DefX = +2;
 			//theGamePanel.intP4DefX = +2;
 			ssm.sendText("P1: Moving");
+		}
+		if(evt.getSource() == ssm){
+			theGamePanel.intP1X = theGamePanel.intP1X + theGamePanel.intP1DefX;
+			theGamePanel.intP1Y = theGamePanel.intP1Y + theGamePanel.intP1DefY;
 		}
 
 		System.out.println("sending message over network"+ssm);
