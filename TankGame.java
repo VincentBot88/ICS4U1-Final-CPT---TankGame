@@ -48,8 +48,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	int intW = 0;
 	String strLineSplit[];
 	
-	//int intX;
-	//int intY;
+	int intX;
+	int intY;
 	
 	//Methods
 	public void itemStateChanged(ItemEvent e){
@@ -239,8 +239,8 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
 			//theGamePanel.intP1X = 40;
 			//theGamePanel.intP1Y = 100;
-			//theGamePanel.intP1X = intX;
-			//theGamePanel.intP1Y = intY;
+			theGamePanel.intP1X = theGamePanel.intP1X + intX;
+			theGamePanel.intP1Y = theGamePanel.intP1Y + intY;
 			//thePanel.removeAll();
 			//theFrame.setContentPane(theGamePanel);
 			//theFrame.pack();
@@ -265,26 +265,32 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.intP2DefY = 0;
 			theGamePanel.intP3DefY = 0;
 			theGamePanel.intP4DefY = 0;
+			intY = 0;
 		}else if(evt.getKeyChar() == 's'){
 			theGamePanel.intP1DefY = 0;
 			theGamePanel.intP2DefY = 0;
 			theGamePanel.intP3DefY = 0;
 			theGamePanel.intP4DefY = 0;
+			intY = 0;
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = 0;
 			theGamePanel.intP2DefX = 0;
 			theGamePanel.intP3DefX = 0;
 			theGamePanel.intP4DefX = 0;
+			intX = 0;
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = 0;
 			theGamePanel.intP2DefX = 0;
 			theGamePanel.intP3DefX = 0;
 			theGamePanel.intP4DefX = 0;
+			intX = 0;
 		}
-		if(evt.getSource() == ssm){
+		/*if(evt.getSource() == ssm){
 			theGamePanel.intP1X = theGamePanel.intP1X + theGamePanel.intP1DefX;
 			theGamePanel.intP1Y = theGamePanel.intP1Y + theGamePanel.intP1DefY;
-		}
+			theGamePanel.intP1X = 100;
+			theGamePanel.intP1Y = 40;
+		}*/
 	}
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyChar() == 'w'){
@@ -292,30 +298,36 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			//theGamePanel.intP2DefY = -2;
 			//theGamePanel.intP3DefY = -2;
 			//theGamePanel.intP4DefY = -2;
+			intY = -2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 's'){
 			theGamePanel.intP1DefY = +2;
 			//theGamePanel.intP2DefY = +2;
 			//theGamePanel.intP3DefY = +2;
 			//theGamePanel.intP4DefY = +2;
+			intY = +2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = -2;
 			//theGamePanel.intP2DefX = -2;
 			//theGamePanel.intP3DefX = -2;
 			//theGamePanel.intP4DefX = -2;
+			intX = -2;
 			ssm.sendText("P1: Moving");
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = +2;
 			//theGamePanel.intP2DefX = +2;
 			//theGamePanel.intP3DefX = +2;
 			//theGamePanel.intP4DefX = +2;
+			intX = +2;
 			ssm.sendText("P1: Moving");
 		}
-		if(evt.getSource() == ssm){
+		/*if(evt.getSource() == ssm){
 			theGamePanel.intP1X = theGamePanel.intP1X + theGamePanel.intP1DefX;
 			theGamePanel.intP1Y = theGamePanel.intP1Y + theGamePanel.intP1DefY;
-		}
+			theGamePanel.intP1X = 40;
+			theGamePanel.intP1Y = 100;
+		}*/
 
 		System.out.println("sending message over network"+ssm);
 	}
