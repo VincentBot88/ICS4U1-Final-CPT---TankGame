@@ -16,7 +16,7 @@ import java.awt.Graphics2D;
 
 public class GamePanel extends JPanel implements ActionListener{
 	//Properties
-	//Player positions, bullet positions
+	/**Player values (Position, Aim, Bullet position) */
 	int intP1Y = 100;
 	int intP1X = 100;
 	int intP1DefX = 0;
@@ -75,6 +75,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	String strIdentity = "";
 	
 	//Player images
+	/**Loading images */
 	BufferedImage P1img = null;
 	BufferedImage P2img = null;
 	BufferedImage P3img = null; 
@@ -96,7 +97,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	}
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		//Map loading
+		/**Map Loading */
 		BufferedReader GrasslandMap = null;
 		BufferedReader DesertMap = null;
 		BufferedReader LavaMap = null;
@@ -117,7 +118,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			
 		int row;
 		int col;
-		//Drawing the respective maps
+		/**Drawing the respective maps */
 		if (selectedMap == "Grassland") {
 			for(row = 0; row < 18; row++){
 				try{
@@ -193,6 +194,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			}
 		}
 		//Closing the map
+		/**Closing the map */
 		g.setColor(Color.BLACK);
 		g.fillRect(960, 0, 320, 720);
 		try{
@@ -203,9 +205,11 @@ public class GamePanel extends JPanel implements ActionListener{
 			System.out.println("Unable to close file");
 		}	
 		
-		//Bullet physics
-		//mouseX/Y = current x/y location of the mouse
-		//originX/Y = x/y location of where the bullet is being shot from
+		/** 
+		 * Bullet physics
+		 * mouseX/Y = current x/y location of the mouse
+		 * originX/Y = x/y location of where the bullet is being shot from
+		 */
 		double angle1 =(Math.atan2(mouseX - intP1X, mouseY - intP1Y));
 		double angle2 =(Math.atan2(mouseX - intP2X, mouseY - intP2Y));
 		double angle3 =(Math.atan2(mouseX - intP3X, mouseY - intP3Y));
@@ -277,28 +281,34 @@ public class GamePanel extends JPanel implements ActionListener{
 			bullet4X = intP4Y;
 			bullet4Y = intP4X;
 		}
-		//Player Rotation
+		/**Player Rotations */
         float xDistance = cursorX - intP1X;
         float yDistance = cursorY - intP1Y;
         double rotationRequired = (Math.toDegrees(Math.atan2(yDistance, xDistance))/50);
 
-        //Rotation information
+        /**Rotation information */
         double locationX = P1img.getWidth() / 2;
         double locationY = P1img.getHeight() / 2;
         AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
-        //Drawing the rotated image at the required drawing locations
+        /**Drawing the rotated image at the required drawing locations */
         g.drawImage(op.filter(P1img, null), intP1X, intP1Y, null);
         
-		//Drawing Players
+		/**Drawing Players */
 		g.drawImage(P2img, intP2X, intP2Y, null);
 		g.drawImage(P3img, intP3X, intP3Y, null);
 		g.drawImage(P4img, intP4X, intP4Y, null);
 		
+<<<<<<< HEAD
 		//Player movement
 			intP1Y = intP1Y + intP1DefY;
 			intP1X = intP1X + intP1DefX;
+=======
+		/**Player movement */
+		intP1Y = intP1Y + intP1DefY;
+		intP1X = intP1X + intP1DefX;
+>>>>>>> a1e6a06838b5e1efb9ea495d7028b5f421e84854
 		
 			intP2Y = intP2Y + intP2DefY;
 			intP2X = intP2X + intP2DefX;
