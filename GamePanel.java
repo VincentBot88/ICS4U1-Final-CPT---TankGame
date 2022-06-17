@@ -61,8 +61,10 @@ public class GamePanel extends JPanel implements ActionListener{
 	double bullet3Velocity = 0;
 	double bullet4Velocity = 0;
 	
-	int wallX;
-	int wallY;
+	int intP1Lives;
+	int intP2Lives;
+	int intP3Lives;
+	int intP4Lives;
 	
 	//Player images
 	BufferedImage P1img = null;
@@ -107,6 +109,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			
 		int row;
 		int col;
+		
 		//Drawing the respective maps
 		if (selectedMap == "Grassland") {
 			for(row = 0; row < 18; row++){
@@ -123,28 +126,40 @@ public class GamePanel extends JPanel implements ActionListener{
 						g.drawImage(ground, col * 40, row * 40, null);
 					}else if(strData[row][col].equals("w")){
 						g.drawImage(wall, col * 40, row * 40, null);
-						Rectangle wallRect = new Rectangle(col * 40, row * 40, 40, 40);
-						Rectangle player1Rect = new Rectangle(intP1X, intP1Y, 55, 49);
-						Rectangle bullet1Rect = new Rectangle((int)bullet1X, (int)bullet1Y, 10, 10);
-							if(player1Rect.intersects(wallRect) && intP1DefX == -2){
-								intP1DefX = 2;
-								intP1X = intP1X + 4;
-							}else if(player1Rect.intersects(wallRect) && intP1DefX == 2){
-								intP1DefX = -2;
-								intP1X = intP1X - 4;
-							}else if(player1Rect.intersects(wallRect) && intP1DefY == -2){
-								intP1DefY = 2;
-								intP1Y = intP1Y + 4;
-							}else if(player1Rect.intersects(wallRect) && intP1DefY == 2){
-								intP1DefY = -2;
-								intP1Y = intP1Y - 4;
-							}if (bullet1Rect.intersects(wallRect)){
-								double bullet1X = intP1X + 25;
-								double bullet1Y = intP1Y + 20;
-							}
+						if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y + 2;
+						}if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y+56 > row*40 && intP1Y+56 < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y - 2;
+						}if(intP1X + 47 > col*40 && intP1X + 47 < col*40 +40 && intP1Y+56 > row*40 && intP1Y+56 < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y - 2;
+						}if(intP1X + 47 > col*40 && intP1X + 47 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y + 2;
+						}if(intP1X > col*40 && intP1X < col*40 +40 && intP1Y + 2 > row*40 && intP1Y + 2 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X + 2;
+						}if(intP1X > col*40 && intP1X < col*40 +40 && intP1Y+54 > row*40 && intP1Y+54 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X + 2;
+						}if(intP1X + 49 > col*40 && intP1X + 49 < col*40 +40 && intP1Y+2 > row*40 && intP1Y+2 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X - 2;
+						}if(intP1X + 49 > col*40 && intP1X + 49 < col*40 +40 && intP1Y+54 > row*40 && intP1Y+54 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X - 2;
+						}if(bullet1Y > col*40 && bullet1Y < col*40 + 40 && bullet1X > row*40 && bullet1X < row*40+40){
+							bullet1Velocity = 0;
+							bullet1X = intP1Y + 25;
+							bullet1Y = intP1X + 20;
+						}
 					}
 				}
 			}
+			
+			
 		} else if (selectedMap == "Lava") {
 			for(row = 0; row < 18; row++){
 				try{
@@ -247,26 +262,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			bullet4X = intP4Y + 25;
 			bullet4Y = intP4X + 20;
 		}
-		if(bullet1X > 720 || bullet1Y > 1000 || bullet1X < 0 || bullet1Y < 0){
-			bullet1Velocity = 0;
-			bullet1X = intP1Y;
-			bullet1Y = intP1X;
-		}
-		if(bullet2X > 720 || bullet2Y > 1000 || bullet2X < 0 || bullet2Y < 0){
-			bullet2Velocity = 0;
-			bullet2X = intP2Y;
-			bullet2Y = intP2X;
-		}
-		if(bullet3X > 720 || bullet3Y > 1000 || bullet3X < 0 || bullet3Y < 0){
-			bullet3Velocity = 0;
-			bullet3X = intP3Y;
-			bullet3Y = intP3X;
-		}
-		if(bullet4X > 720 || bullet4Y > 1000 || bullet4X < 0 || bullet4Y < 0){
-			bullet4Velocity = 0;
-			bullet4X = intP4Y;
-			bullet4Y = intP4X;
-		}
+
 		//Player Rotation
         float xDistance = cursorX - intP1X;
         float yDistance = cursorY - intP1Y;
@@ -298,6 +294,14 @@ public class GamePanel extends JPanel implements ActionListener{
 		
 		intP4Y = intP4Y + intP4DefY;
 		intP4X = intP4X + intP4DefX;
+		
+		//Lose Lives when Shot
+		if(bullet1Y > intP2Y && bullet1Y < intP2Y + 50 && bullet1X > intP2X && bullet1X < intP2X + 50){
+			intP2Lives = intP2Lives - 1;
+			System.out.println(intP2Lives);
+		}
+		
+		
 	}
 	
 	//Constructor

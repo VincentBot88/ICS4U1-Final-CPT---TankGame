@@ -37,12 +37,15 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JTextField IPTextField = new JTextField("localhost");
 	JTextField PortTextField = new JTextField("6112");
 	
+	JTextField LivesTextField = new JTextField("");
+	
 	JLabel IPLabel = new JLabel();
 	JLabel PortLabel = new JLabel();
 	JLabel JoinLabel = new JLabel();
 	JLabel HostLabel = new JLabel();
 	JLabel MapLabel = new JLabel();
 	JLabel ChatLabel = new JLabel();
+	JLabel LivesLabel = new JLabel();
 	
 	int intJoin = 0;
 	int intW = 0;
@@ -90,6 +93,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(HostLabel);
 			thePanel.add(IPTextField);
 			thePanel.add(PortTextField);
+			thePanel.add(LivesTextField);
 			PortLabel.setForeground(Color.RED);
 			PortLabel.setFont(new Font("Serif", Font.BOLD, 30));
 			thePanel.add(PortLabel);
@@ -100,14 +104,18 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.add(HostButton);
 			thePanel.add(MapSelectBox);
 			thePanel.add(MapLabel);
+			thePanel.add(LivesLabel);
 			MapLabel.setForeground(Color.RED);
+			LivesLabel.setForeground(Color.RED);
 			MapLabel.setFont(new Font("Serif", Font.BOLD, 30));
+			LivesLabel.setFont(new Font("Serif", Font.BOLD, 30));
 		}
 		//Back button after pressing Host Game
 		if(evt.getSource() == HostBackButton){
 			thePanel.remove(HostLabel);
 			thePanel.remove(IPTextField);
 			thePanel.remove(PortTextField);
+			thePanel.remove(LivesTextField);
 			thePanel.remove(PortLabel);
 			thePanel.remove(IPLabel);
 			thePanel.remove(HostBackButton);
@@ -115,6 +123,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.remove(StartButton);
 			thePanel.remove(MapSelectBox);
 			thePanel.remove(MapLabel);
+			thePanel.remove(LivesLabel);
 			thePanel.add(JoinGameButton);
 			thePanel.add(HostGameButton);
 								
@@ -124,6 +133,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			thePanel.remove(JoinLabel);
 			thePanel.remove(IPTextField);
 			thePanel.remove(PortTextField);
+			thePanel.remove(LivesTextField);
 			thePanel.remove(PortLabel);
 			thePanel.remove(IPLabel);
 			thePanel.remove(JoinBackButton);
@@ -173,6 +183,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.selectedMap = "Lava";
 				ssm.sendText("Lava");
 			}
+			theGamePanel.intP1Lives = Integer.parseInt(LivesTextField.getText());
+			theGamePanel.intP2Lives = Integer.parseInt(LivesTextField.getText());
+			theGamePanel.intP3Lives = Integer.parseInt(LivesTextField.getText());
+			theGamePanel.intP4Lives = Integer.parseInt(LivesTextField.getText());
+			
 			//Clears screen then start the gameplay
 			thePanel.removeAll();
 			theFrame.setContentPane(theGamePanel);
@@ -351,22 +366,22 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		if(evt.getButton()==1 && theGamePanel.bullet1Velocity == 0){
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
-			theGamePanel.bullet1Velocity = 10;
+			theGamePanel.bullet1Velocity = 15;
 		}
 		if(evt.getButton()==1 && theGamePanel.bullet2Velocity == 0){
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
-			theGamePanel.bullet2Velocity = 10;
+			theGamePanel.bullet2Velocity = 15;
 		}
 		if(evt.getButton()==1 && theGamePanel.bullet3Velocity == 0){
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
-			theGamePanel.bullet3Velocity = 10;
+			theGamePanel.bullet3Velocity = 15;
 		}
 		if(evt.getButton()==1 && theGamePanel.bullet4Velocity == 0){
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
-			theGamePanel.bullet4Velocity = 10;
+			theGamePanel.bullet4Velocity = 15;
 		}
 		intHold = 1;
 		//ssm.sendText("Shot,"+theGamePanel.mouseX+","+theGamePanel.mouseY);
@@ -438,7 +453,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		//Host Game Back Button
 		HostBackButton = new JButton("Back");
 		HostBackButton.setSize(100, 50);
-		HostBackButton.setLocation(750, 400);
+		HostBackButton.setLocation(750, 475);
 		HostBackButton.addActionListener(this);
 		
 		//Join Game Back Button
@@ -450,13 +465,13 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		//Host Button
 		HostButton = new JButton("Host");
 		HostButton.setSize(100, 50);
-		HostButton.setLocation(950, 400);
+		HostButton.setLocation(950, 475);
 		HostButton.addActionListener(this);
 		
 		//Start Button (Host Side)
 		StartButton  = new JButton("Start");
 		StartButton.setSize(100, 50);
-		StartButton.setLocation(1100, 400);
+		StartButton.setLocation(1100, 475);
 		StartButton.addActionListener(this);
 		
 		//Join Button
@@ -499,11 +514,22 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		
 		//Port Textfield
 		PortTextField.setSize(200, 50);
-		PortTextField.setLocation(840, 250);		
+		PortTextField.setLocation(840, 250);	
+			
 		//Port Label
 		PortLabel = new JLabel("Port: ");
 		PortLabel.setSize(400, 50);
 		PortLabel.setLocation(750, 250);
+		PortTextField.setLocation(840, 250);
+		
+		//Lives Textfield
+		LivesTextField.setSize(200, 50);
+		LivesTextField.setLocation(840, 405);
+		
+		//Lives Label
+		LivesLabel = new JLabel("Lives: ");
+		LivesLabel.setSize(400, 50);
+		LivesLabel.setLocation(750, 405);
 		
 		
 		theFrame.addWindowListener(new java.awt.event.WindowAdapter() {
