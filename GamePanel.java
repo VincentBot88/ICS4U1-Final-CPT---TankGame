@@ -300,15 +300,15 @@ public class GamePanel extends JPanel implements ActionListener{
 		g.drawImage(P3img, intP3X, intP3Y, null);
 		g.drawImage(P4img, intP4X, intP4Y, null);
 		
-<<<<<<< HEAD
+
 		//Player movement
 			intP1Y = intP1Y + intP1DefY;
 			intP1X = intP1X + intP1DefX;
-=======
+
 		/**Player movement */
 		intP1Y = intP1Y + intP1DefY;
 		intP1X = intP1X + intP1DefX;
->>>>>>> a1e6a06838b5e1efb9ea495d7028b5f421e84854
+
 		
 			intP2Y = intP2Y + intP2DefY;
 			intP2X = intP2X + intP2DefX;
