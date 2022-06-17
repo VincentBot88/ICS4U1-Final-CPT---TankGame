@@ -10,10 +10,11 @@ Features:
 - 3 Maps to select from
 - A dedicated chat system so you can talk to your friends while in the game
 
-##Installing
+## Installing
 Simply download the zip file and you are good to go.
 
-##Executing program
+## Executing program
+
 Locate the jar executable file within the zip file. Run it.
 -----------------------------------------------------------
 Steps to follow in order to play with friends.
@@ -34,7 +35,7 @@ For another player joining a hosted game
 NOTE:
 You can always press back before pressing Join or Host. The program may not function properly if any steps were missed. Please QUIT the game and execute it again to solve any hosting or joining issues. 
 
-##Help
+## Help
 There may be some slight lag for the synchronization. 
 
 Controls:
@@ -46,13 +47,13 @@ Chat controls
 Click on the textfield below the chat area to start typing
 Press enter to send the desired message
 
-##Version
+## Version
 1.0
 
-##Authors & License
+## Authors & License
 This java program is made by Vicent Cheng, Brandon Lin & Elill Mathivannan
 ICS4U (Spring 2022)
 
-##Acknowledgments
+## Acknowledgments
 Many thanks to our family and friends
 Many thanks to Mr.Cadawas 
