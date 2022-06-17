@@ -75,7 +75,6 @@ public class GamePanel extends JPanel implements ActionListener{
 	BufferedImage wall = null;
 	BufferedImage sand = null;
 	BufferedImage lava = null;
-	SuperSocketMaster ssm;
 	String selectedMap;
 	
 	interface gameInterface{
