@@ -192,6 +192,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				System.out.println("Client Connected");
 				ssm.sendText("Map," + MapSelectBox.getSelectedItem());
 			}
+			//select map
 			if(strInSplit[0].equals ("Map")){
 				if(strInSplit[1].equals("Grassland")){
 					theGamePanel.selectedMap = "Grassland";
@@ -203,13 +204,12 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.repaint();
 				System.out.println("Received from server");
 			}
-			if(!strInSplit[0].equals("Moving") && !strInSplit[0].equals("Shot") && !strInSplit[0].equals("Rotation")){
+			//filter chat
+			if(!strInSplit[0].equals("Moving") && !strInSplit[0].equals("Shot") && !strInSplit[0].equals("Rotation") && !strInSplit[0].equals("Shot2") &&!strInSplit[0].equals("Shot3") && !strInSplit[0].equals("Shot4")){
 				chatToReceive.append(ssm.readText() + "\n");
 				chatToReceive.setCaretPosition(chatToReceive.getDocument().getLength());
 			}
-			//if(
-			//theGamePanel.intP1X = 40;
-			//theGamePanel.intP1Y = 100;
+			//indicate action
 			if(strInSplit[0].equals("Moving")){
 				theGamePanel.intP1X = Integer.parseInt(strInSplit[1]);
 				theGamePanel.intP1Y = Integer.parseInt(strInSplit[2]);
@@ -218,30 +218,37 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 				theGamePanel.bullet1X = Double.parseDouble(strInSplit[1]);
 				theGamePanel.bullet1Y = Double.parseDouble(strInSplit[2]);
 			}
+			if(strInSplit[0].equals("Shot2")){
+				theGamePanel.bullet2X = Double.parseDouble(strInSplit[1]);
+				theGamePanel.bullet2Y = Double.parseDouble(strInSplit[2]);
+			}
+			if(strInSplit[0].equals("Shot3")){
+				theGamePanel.bullet3X = Double.parseDouble(strInSplit[1]);
+				theGamePanel.bullet3Y = Double.parseDouble(strInSplit[2]);
+			}
+			if(strInSplit[0].equals("Shot4")){
+				theGamePanel.bullet4X = Double.parseDouble(strInSplit[1]);
+				theGamePanel.bullet4Y = Double.parseDouble(strInSplit[2]);
+			}
 			if(strInSplit[0].equals("Rotation")){
 				theGamePanel.cursorX = Integer.parseInt(strInSplit[1]);
 				theGamePanel.cursorY = Integer.parseInt(strInSplit[2]);
 			}
-			//theGamePanel.bullet1X =
-			//thePanel.removeAll();
-			//theFrame.setContentPane(theGamePanel);
-			//theFrame.pack();
-			//theFrame.requestFocus();
-			//theGamePanel.add(theScrollBar);
-			//theGamePanel.add(chatToSend);
 		}
 		//Chat networking
 		if(evt.getSource() == chatToSend){
 			if(ssm != null){
 				chatToReceive.append("You: " + chatToSend.getText() + "\n");
 				ssm.sendText("Player: " + chatToSend.getText());
-				
 			}
 			chatToSend.setText("");
 			theFrame.requestFocus();
 		}
 		if(intHold == 1){
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
+			ssm.sendText("Shot2,"+theGamePanel.bullet2X+","+theGamePanel.bullet2Y);
+			ssm.sendText("Shot3,"+theGamePanel.bullet3X+","+theGamePanel.bullet3Y);
+			ssm.sendText("Shot4,"+theGamePanel.bullet4X+","+theGamePanel.bullet4Y);
 		}
 	}
 	
@@ -280,57 +287,32 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}
-		/*if(evt.getSource() == ssm){
-			theGamePanel.intP1X = theGamePanel.intP1X + theGamePanel.intP1DefX;
-			theGamePanel.intP1Y = theGamePanel.intP1Y + theGamePanel.intP1DefY;
-			theGamePanel.intP1X = 100;
-			theGamePanel.intP1Y = 40;
-		}*/
+
 	}
 	public void keyPressed(KeyEvent evt){
 		//Player Movement
 		if(evt.getKeyChar() == 'w'){
 			theGamePanel.intP1DefY = -2;
-			//theGamePanel.intP2DefY = -2;
-			//theGamePanel.intP3DefY = -2;
-			//theGamePanel.intP4DefY = -2;
 			intY = -2;
 			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}else if(evt.getKeyChar() == 's'){
 			theGamePanel.intP1DefY = +2;
-			//theGamePanel.intP2DefY = +2;
-			//theGamePanel.intP3DefY = +2;
-			//theGamePanel.intP4DefY = +2;
 			intY = +2;
 			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}else if(evt.getKeyChar() == 'a'){
 			theGamePanel.intP1DefX = -2;
-			//theGamePanel.intP2DefX = -2;
-			//theGamePanel.intP3DefX = -2;
-			//theGamePanel.intP4DefX = -2;
 			intX = -2;
 			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}else if(evt.getKeyChar() == 'd'){
 			theGamePanel.intP1DefX = +2;
-			//theGamePanel.intP2DefX = +2;
-			//theGamePanel.intP3DefX = +2;
-			//theGamePanel.intP4DefX = +2;
 			intX = +2;
 			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}
-		/*if(evt.getSource() == ssm){
-			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
-			//theGamePanel.intP1X = theGamePanel.intP1X + theGamePanel.intP1DefX;
-			//theGamePanel.intP1Y = theGamePanel.intP1Y + theGamePanel.intP1DefY;
-			//theGamePanel.intP1X = 40;
-			//theGamePanel.intP1Y = 100;
-		}*/
 
-		//System.out.println("sending message over network"+ssm);
 	}
 	public void keyTyped(KeyEvent evt){
 		
@@ -369,7 +351,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			theGamePanel.bullet4Velocity = 10;
 		}
 		intHold = 1;
-		//ssm.sendText("Shot,"+theGamePanel.mouseX+","+theGamePanel.mouseY);
 	}
 	
 	public void mouseReleased(MouseEvent evt){
