@@ -39,13 +39,13 @@ You can always press back before pressing Join or Host. The program may not func
 There may be some slight lag for the synchronization. 
 
 Controls:
-WASD For movement
-Mouse for aim
-Left click to shoot a bullet
+- WASD For movement
+- Mouse for aim
+- Left click to shoot a bullet
 
 Chat controls
-Click on the textfield below the chat area to start typing
-Press enter to send the desired message
+- Click on the textfield below the chat area to start typing
+- Press enter to send the desired message
 
 ## Version
 1.0
