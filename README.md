@@ -52,8 +52,10 @@ Chat controls
 
 ## Authors & License
 This java program is made by Vicent Cheng, Brandon Lin & Elill Mathivannan
+
 ICS4U (Spring 2022)
 
 ## Acknowledgments
 Many thanks to our family and friends
+
 Many thanks to Mr.Cadawas 
