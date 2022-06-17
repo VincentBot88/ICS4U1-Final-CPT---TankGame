@@ -173,8 +173,38 @@ public class GamePanel extends JPanel implements ActionListener{
 					strData[row][col] = strRow[col];
 					if(strData[row][col].equals("w")){
 						g.drawImage(wall, col * 40, row * 40, null);
+						if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y + 2;
+						}if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y+56 > row*40 && intP1Y+56 < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y - 2;
+						}if(intP1X + 47 > col*40 && intP1X + 47 < col*40 +40 && intP1Y+56 > row*40 && intP1Y+56 < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y - 2;
+						}if(intP1X + 47 > col*40 && intP1X + 47 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y + 2;
+						}if(intP1X > col*40 && intP1X < col*40 +40 && intP1Y + 2 > row*40 && intP1Y + 2 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X + 2;
+						}if(intP1X > col*40 && intP1X < col*40 +40 && intP1Y+54 > row*40 && intP1Y+54 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X + 2;
+						}if(intP1X + 49 > col*40 && intP1X + 49 < col*40 +40 && intP1Y+2 > row*40 && intP1Y+2 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X - 2;
+						}if(intP1X + 49 > col*40 && intP1X + 49 < col*40 +40 && intP1Y+54 > row*40 && intP1Y+54 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X - 2;
+						}if(bullet1Y > col*40 && bullet1Y < col*40 + 40 && bullet1X > row*40 && bullet1X < row*40+40){
+							bullet1Velocity = 0;
+							bullet1X = intP1Y + 25;
+							bullet1Y = intP1X + 20;
+						}
 					} else if(strData[row][col].equals("l")){
 						g.drawImage(lava, col * 40, row * 40, null);
+						
 					}
 				}
 			}
@@ -191,6 +221,35 @@ public class GamePanel extends JPanel implements ActionListener{
 					strData[row][col] = strRow[col];
 					if(strData[row][col].equals("w")){
 						g.drawImage(wall, col * 40, row * 40, null);
+						if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y + 2;
+						}if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y+56 > row*40 && intP1Y+56 < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y - 2;
+						}if(intP1X + 47 > col*40 && intP1X + 47 < col*40 +40 && intP1Y+56 > row*40 && intP1Y+56 < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y - 2;
+						}if(intP1X + 47 > col*40 && intP1X + 47 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
+							intP1DefY = 0;
+							intP1Y = intP1Y + 2;
+						}if(intP1X > col*40 && intP1X < col*40 +40 && intP1Y + 2 > row*40 && intP1Y + 2 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X + 2;
+						}if(intP1X > col*40 && intP1X < col*40 +40 && intP1Y+54 > row*40 && intP1Y+54 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X + 2;
+						}if(intP1X + 49 > col*40 && intP1X + 49 < col*40 +40 && intP1Y+2 > row*40 && intP1Y+2 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X - 2;
+						}if(intP1X + 49 > col*40 && intP1X + 49 < col*40 +40 && intP1Y+54 > row*40 && intP1Y+54 < row*40+40){
+							intP1DefX = 0;
+							intP1X = intP1X - 2;
+						}if(bullet1Y > col*40 && bullet1Y < col*40 + 40 && bullet1X > row*40 && bullet1X < row*40+40){
+							bullet1Velocity = 0;
+							bullet1X = intP1Y + 25;
+							bullet1Y = intP1X + 20;
+						}
 					} else if(strData[row][col].equals("s")){
 						g.drawImage(sand, col * 40, row * 40, null);
 					}
