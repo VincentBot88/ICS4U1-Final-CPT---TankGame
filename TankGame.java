@@ -12,12 +12,17 @@ import javax.swing.JComponent.*;
 
 public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener, ItemListener{
 	//Properties
+	/** Super Socket Master*/
 	SuperSocketMaster ssm;
+	/** JFrame */
 	JFrame theFrame = new JFrame("Top Down Tanks by Vincent, Elill, Brandon");
+	/** JPanels */
 	MenuPanel thePanel = new MenuPanel();
 	GamePanel theGamePanel = new GamePanel();
+	/** JTimer */
 	Timer theTimer = new Timer(1000/60, this);
 	public JLabel resultLabel;
+	/** Various JComponents */
 	JButton QuitGameButton = new JButton();
 	JButton JoinGameButton = new JButton();
 	JButton HostGameButton = new JButton();
@@ -26,9 +31,11 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JButton HostButton = new JButton();
 	JButton StartButton = new JButton();
 	JButton JoinButton = new JButton();
+	/** String array to be fitted within JComboBox */
 	String[] strMapSelects = {"Grassland", "Desert", "Lava"};
 	JComboBox MapSelectBox = new JComboBox();
 	
+	/** Various JComponents */
 	JTextArea chatToReceive = new JTextArea();
 	JTextField chatToSend = new JTextField();
 	JScrollPane theScrollBar = new JScrollPane(chatToReceive);
@@ -46,6 +53,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	JLabel ChatLabel = new JLabel();
 	JLabel LivesLabel = new JLabel();
 	
+	/** Various Properties */
 	int intJoin = 0;
 	int intW = 0;
 	String strLineSplit[];
@@ -56,6 +64,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	int intY = theGamePanel.intP1DefY;
 	
 	//Methods
+	/** Action Peformed (Mouse action, Keyboard action) */
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
@@ -264,6 +273,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm.sendText("Shot4,"+theGamePanel.bullet4X+","+theGamePanel.bullet4Y);
 		}
 	}
+	/** Checks if any keys were released */
 	public void keyReleased(KeyEvent evt){
 		//Player Movement
 		if(evt.getKeyChar() == 'w'){
@@ -300,6 +310,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}
 	}
+	/**Checks if any keys were pressed */
 	public void keyPressed(KeyEvent evt){
 		//Player Movement
 		if(evt.getKeyChar() == 'w'){
@@ -324,10 +335,13 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}
 	}
+	/**Checks if any keys were typed */
 	public void keyTyped(KeyEvent evt){
 	}
+	/**Checks if any items were changed */
 	public void itemStateChanged(ItemEvent e){
 	}
+	/**Checks if the mouse has moved */
 	public void mouseMoved(MouseEvent evt){
 		//Mouse aim
 		theGamePanel.cursorX = evt.getX();
@@ -336,6 +350,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm.sendText("Rotation,"+theGamePanel.cursorX+","+theGamePanel.cursorY);
 		}
 	}
+	/**Checks if any buttons on the mouse has been pressed */
 	public void mousePressed(MouseEvent evt) {
 		//Bullet/Mouse aim
 		if(evt.getButton()==1 && theGamePanel.bullet1Velocity == 0){
@@ -360,18 +375,24 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}
 		intHold = 1;
 	}
+	/**Checks if any buttons on the mouse has been released */
 	public void mouseReleased(MouseEvent evt){
 	}
+	/**Checks if the mouse has been dragged */
 	public void mouseDragged(MouseEvent evt){
 	}
+	/**Checks if any buttons on the mouse has been clicked */
 	public void mouseClicked(MouseEvent evt){	
 	}
+	/**Checks if any inputs from the mouse */
 	public void mouseEntered(MouseEvent evt){
 	}
+	/**Checks if any outputs from the mouse */
 	public void mouseExited(MouseEvent evt){
 	}
 	
 	//Constructor
+	/**Constructor of the main tank game model */
 	public TankGame(){
 		//Window Elements Essentials
 		thePanel.setPreferredSize(new Dimension(1280, 720));
@@ -515,6 +536,7 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 	}
 
 	//main method
+	/**Main method */
 	public static void main(String[] args){
 		new TankGame();
 	}

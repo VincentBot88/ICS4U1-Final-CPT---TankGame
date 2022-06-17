@@ -15,52 +15,56 @@ import java.io.File;
 import java.awt.Graphics2D;
 
 public class GamePanel extends JPanel implements ActionListener{
-	/**Properties */
+	//Properties 
 	/**Player positions, bullet positions */
+	/**Player 1 coordinates */
 	int intP1Y = 100;
 	int intP1X = 100;
 	int intP1DefX = 0;
 	int intP1DefY = 0;
 	
+	/**Player 2 coordinates */
 	int intP2Y = 500;
 	int intP2X = 600;
 	int intP2DefX = 0;
 	int intP2DefY = 0;
 	
+	/**Player 3 coordinates */
 	int intP3Y = 300;
 	int intP3X = 400;
 	int intP3DefX = 0;
 	int intP3DefY = 0;
 	
+	/**Player 4 coordinates */
 	int intP4Y = 200;
 	int intP4X = 300;
 	int intP4DefX = 0;
 	int intP4DefY = 0;
 	
+	/**Mouse coordinates */
 	int mouseX;
 	int mouseY;
-	
 	int cursorX;
 	int cursorY;
 
+	/**Bullet coordinates */
 	double bullet1X = intP1X + 25;
 	double bullet1Y = intP1Y + 20;
-	
 	double bullet2X = intP2X + 25;
 	double bullet2Y = intP2Y + 20;
-	
 	double bullet3X = intP3X + 25;
 	double bullet3Y = intP3Y + 20;
-	
 	double bullet4X = intP4X + 25;
 	double bullet4Y = intP4Y + 20;
 	
+	/**Bullet fired or not, bullet speed */
 	boolean fire = false;
 	double bullet1Velocity = 0;
 	double bullet2Velocity = 0;
 	double bullet3Velocity = 0;
 	double bullet4Velocity = 0;
 	
+	/**Player Lives */
 	int intP1Lives;
 	int intP2Lives;
 	int intP3Lives;
@@ -81,10 +85,11 @@ public class GamePanel extends JPanel implements ActionListener{
 		void paintComponent();
 	}
 	
-	/**Methods */
+	/**Actions performed method */
 	public void actionPerformed(ActionEvent evt){
 			
 	}
+	/**Drawing the map, images, shapes, etc... */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		/**Map loading */
@@ -109,7 +114,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		int row;
 		int col;
 		
-		/** Drawing the respective maps */
+		//Drawing the respective maps
 		if (selectedMap == "Grassland") {
 			for(row = 0; row < 18; row++){
 				try{
@@ -125,7 +130,7 @@ public class GamePanel extends JPanel implements ActionListener{
 						g.drawImage(ground, col * 40, row * 40, null);
 					}else if(strData[row][col].equals("w")){
 						g.drawImage(wall, col * 40, row * 40, null);
-						/** wall hitboxes */
+						//wall hitboxes
 						if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
 							intP1DefY = 0;
 							intP1Y = intP1Y + 2;
@@ -171,7 +176,7 @@ public class GamePanel extends JPanel implements ActionListener{
 					strData[row][col] = strRow[col];
 					if(strData[row][col].equals("w")){
 						g.drawImage(wall, col * 40, row * 40, null);
-						/** wall hitboxes */
+						//wall hitboxes
 						if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
 							intP1DefY = 0;
 							intP1Y = intP1Y + 2;
@@ -219,7 +224,7 @@ public class GamePanel extends JPanel implements ActionListener{
 					strData[row][col] = strRow[col];
 					if(strData[row][col].equals("w")){
 						g.drawImage(wall, col * 40, row * 40, null);
-						/** wall hitboxes */
+						//wall hitboxes
 						if(intP1X + 2 > col*40 && intP1X + 2 < col*40 +40 && intP1Y > row*40 && intP1Y < row*40+40){
 							intP1DefY = 0;
 							intP1Y = intP1Y + 2;
@@ -255,7 +260,7 @@ public class GamePanel extends JPanel implements ActionListener{
 				}
 			}
 		}
-		/** Closing the map */
+		//Closing the map after reading from them
 		g.setColor(Color.BLACK);
 		g.fillRect(960, 0, 320, 720);
 		try{
@@ -265,11 +270,10 @@ public class GamePanel extends JPanel implements ActionListener{
 		}catch(IOException e){
 			System.out.println("Unable to close file");
 		}	
-		
-		/** Bullet physics
-		 * mouseX/Y = current x/y location of the mouse
-		 * originX/Y = x/y location of where the bullet is being shot from
-		 */ 
+		//Bullet physics 
+		//mouseX/Y = current x/y location of the mouse
+		//originX/Y = x/y location of where the bullet is being shot from
+ 
 		double angle1 =(Math.atan2(mouseX - intP1X, mouseY - intP1Y));
 		double angle2 =(Math.atan2(mouseX - intP2X, mouseY - intP2Y));
 		double angle3 =(Math.atan2(mouseX - intP3X, mouseY - intP3Y));
@@ -321,27 +325,27 @@ public class GamePanel extends JPanel implements ActionListener{
 			bullet4X = intP4Y + 25;
 			bullet4Y = intP4X + 20;
 		}
-
-		/**Player Rotation */
+		//Player Rotation
         float xDistance = cursorX - intP1X;
         float yDistance = cursorY - intP1Y;
         double rotationRequired = (Math.toDegrees(Math.atan2(yDistance, xDistance))/50);
-
-        /**Rotation information */
+		
+        //Rotation information
         double locationX = P1img.getWidth() / 2;
         double locationY = P1img.getHeight() / 2;
         AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        /**Drawing the rotated image at the required drawing locations */
+		
+        //Drawing the rotated image at the required drawing locations
         g.drawImage(op.filter(P1img, null), intP1X, intP1Y, null);
         
-		/**Drawing Players */
+		//Drawing Players
 		g.drawImage(P2img, intP2X, intP2Y, null);
 		g.drawImage(P3img, intP3X, intP3Y, null);
 		g.drawImage(P4img, intP4X, intP4Y, null);
 		
-		/**Player movement */
+
+		//Player movement
 		intP1Y = intP1Y + intP1DefY;
 		intP1X = intP1X + intP1DefX;
 		
@@ -354,7 +358,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		intP4Y = intP4Y + intP4DefY;
 		intP4X = intP4X + intP4DefX;
 		
-		/**Lose Lives when Shot */
+		//Lose Lives when Shot
 		if(bullet1Y > intP2Y && bullet1Y < intP2Y + 50 && bullet1X > intP2X && bullet1X < intP2X + 50){
 			intP2Lives = intP2Lives - 1;
 			System.out.println(intP2Lives);
@@ -362,8 +366,8 @@ public class GamePanel extends JPanel implements ActionListener{
 		
 		
 	}
-	
-	/**Constructor */
+	//Constructor
+	/**Constructor, load images */
 	public GamePanel(){
 		super();
 		try{
