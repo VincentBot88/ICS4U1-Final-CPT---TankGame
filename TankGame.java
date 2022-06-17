@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.net.*;
 import javax.swing.JComponent.*;
 
-
 public class TankGame implements ActionListener, KeyListener, MouseMotionListener, MouseListener, ItemListener{
 	//Properties
 	SuperSocketMaster ssm;
@@ -161,7 +160,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			boolean tankConnect = ssm.connect();
 			ssm.sendText("Client,Player1");
 			
-			//if(tankConnect){
 				thePanel.removeAll();
 				theFrame.setContentPane(theGamePanel);
 				theFrame.pack();
@@ -266,7 +264,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm.sendText("Shot4,"+theGamePanel.bullet4X+","+theGamePanel.bullet4Y);
 		}
 	}
-	
 	public void keyReleased(KeyEvent evt){
 		//Player Movement
 		if(evt.getKeyChar() == 'w'){
@@ -302,7 +299,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}
-
 	}
 	public void keyPressed(KeyEvent evt){
 		//Player Movement
@@ -327,13 +323,10 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 			ssm.sendText("Moving,"+theGamePanel.intP1X+","+theGamePanel.intP1Y);
 			ssm.sendText("Shot,"+theGamePanel.bullet1X+","+theGamePanel.bullet1Y);
 		}
-
 	}
 	public void keyTyped(KeyEvent evt){
-		
 	}
 	public void itemStateChanged(ItemEvent e){
-	
 	}
 	public void mouseMoved(MouseEvent evt){
 		//Mouse aim
@@ -367,7 +360,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		}
 		intHold = 1;
 	}
-	
 	public void mouseReleased(MouseEvent evt){
 	}
 	public void mouseDragged(MouseEvent evt){
@@ -511,7 +503,6 @@ public class TankGame implements ActionListener, KeyListener, MouseMotionListene
 		LivesLabel = new JLabel("Lives: ");
 		LivesLabel.setSize(400, 50);
 		LivesLabel.setLocation(750, 405);
-		
 		
 		theFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
