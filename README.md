@@ -51,7 +51,7 @@ Chat controls
 1.0
 
 ## Authors & License
-This java program is made by Vicent Cheng, Brandon Lin & Elill Mathivannan
+This java program is made by Vincent Cheng, Brandon Lin & Elill Mathivannan
 
 ICS4U (Spring 2022)
 
