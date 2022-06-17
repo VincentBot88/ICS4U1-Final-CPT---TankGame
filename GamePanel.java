@@ -22,6 +22,14 @@ public class GamePanel extends JPanel implements ActionListener{
 	int intP1DefX = 0;
 	int intP1DefY = 0;
 	
+	String strP1 = null;
+	String strP2 = null;
+	String strP3 = null;
+	String strP4 = null;
+	String strP5 = null;
+	
+	int intPlayers = 0;
+	
 	int intP2Y = 500;
 	int intP2X = 600;
 	int intP2DefX = 0;
@@ -63,6 +71,8 @@ public class GamePanel extends JPanel implements ActionListener{
 	
 	int wallX;
 	int wallY;
+	
+	String strIdentity = "";
 	
 	//Player images
 	BufferedImage P1img = null;
@@ -287,17 +297,17 @@ public class GamePanel extends JPanel implements ActionListener{
 		g.drawImage(P4img, intP4X, intP4Y, null);
 		
 		//Player movement
-		intP1Y = intP1Y + intP1DefY;
-		intP1X = intP1X + intP1DefX;
+			intP1Y = intP1Y + intP1DefY;
+			intP1X = intP1X + intP1DefX;
 		
-		intP2Y = intP2Y + intP2DefY;
-		intP2X = intP2X + intP2DefX;
+			intP2Y = intP2Y + intP2DefY;
+			intP2X = intP2X + intP2DefX;
 		
-		intP3Y = intP3Y + intP3DefY;
-		intP3X = intP3X + intP3DefX;
+			intP3Y = intP3Y + intP3DefY;
+			intP3X = intP3X + intP3DefX;
 		
-		intP4Y = intP4Y + intP4DefY;
-		intP4X = intP4X + intP4DefX;
+			intP4Y = intP4Y + intP4DefY;
+			intP4X = intP4X + intP4DefX;
 	}
 	
 	//Constructor
