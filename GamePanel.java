@@ -254,7 +254,7 @@ public class GamePanel extends JPanel implements ActionListener{
 							bullet1X = intP1Y + 25;
 							bullet1Y = intP1X + 20;
 						}
-					} else if(strData[row][col].equals("s")){
+					} else if(strData[row][col].equals("t")){
 						g.drawImage(sand, col * 40, row * 40, null);
 					}
 				}
